@@ -1,26 +1,37 @@
-.productos, .carrito {
-    margin: 20px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .producto, .carrito-item {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
-  }
-  
-  button {
-    padding: 5px 10px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background-color: #00e1e1;
-  }
-  
+html, body {
+  height: 100%; /* Asegura que el cuerpo y el html ocupen todo el alto de la ventana */
+  margin: 0;
+}
+
+.contenedor-principal {
+  display: flex;
+  flex-direction: column; /* Coloca los elementos en una columna */
+  min-height: 100vh; /* Asegura que el contenedor principal ocupe al menos el 100% del alto de la ventana */
+}
+
+.carrito {
+  flex: 1; /* Esto permite que el contenido se expanda para llenar el espacio disponible */
+  margin: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.producto, .carrito-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+button {
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #00e1e1;
+}

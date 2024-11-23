@@ -1,75 +1,75 @@
-<app-navbar></app-navbar>
-<!-- Página principal -->
-<div class="home-container">
-    
+<div class="page-wrapper">
+  <app-navbar></app-navbar>
+  
+  <!-- Página principal -->
+  <div class="home-container">
+    <!-- Sección de imágenes -->
     <div class="image-section">
-        <div class="image-item" id="salones" (click)="navigateTo('/salones')">
-          <img 
-            src="https://z-p3-scontent.fkna2-1.fna.fbcdn.net/v/t1.6435-9/182928198_4181752408556192_63860439584394536_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=13d280&_nc_ohc=GMtFYvRHcd4Q7kNvgE1u19d&_nc_zt=23&_nc_ht=z-p3-scontent.fkna2-1.fna&_nc_gid=AaRPoyYcsugjoLY-dtAQCaw&oh=00_AYDTSLO52_Vp1wHd7XOPF3IsMnOXt31XGF4Z6G1Q5A-n2A&oe=6757308F" 
-            alt="Imagen Salones"
-          >
-          <div class="overlay"><p>Salones</p></div>
-        </div>
-        <div class="image-item" id="banqueteria" (click)="navigateTo('/banqueteria')">
-          <img 
-            src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEizUJK6X9JZP1F3jTDy_vcPvis-H_660rK1ehKMF1QlnSo5ZmHZ7JN9aeG-4zPksOooQCtK8IvBf9BgeFLW8YwjqTTJQWDUVa_KwwoLXndJPC31jeobtP434hBcqYRRA1y-dvPW4ZaYaWo/s1600/FLAVOURS.jpg" 
-            alt="Imagen Banquetería"
-          >
-          <div class="overlay"><p>Banquetería</p></div>
-        </div>
-        <div class="image-item" id="entretenimiento" (click)="navigateTo('/entretenimiento')">
-          <img 
-            src="https://media.v2.siweb.es/uploaded_thumb_seo/e89129f136877ce57afcc6e44fccbb55/batucada_2.jpg" 
-            alt="Imagen Entretenimiento"
-          >
-          <div class="overlay"><p>Entretenimiento</p></div>
-        </div>
+      <div class="image-item" id="salones" (click)="navigateTo('/salones')">
+        <img 
+          src="https://z-p3-scontent.fkna2-1.fna.fbcdn.net/v/t1.6435-9/182928198_4181752408556192_63860439584394536_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=13d280&_nc_ohc=GMtFYvRHcd4Q7kNvgE1u19d&_nc_zt=23&_nc_ht=z-p3-scontent.fkna2-1.fna&_nc_gid=AaRPoyYcsugjoLY-dtAQCaw&oh=00_AYDTSLO52_Vp1wHd7XOPF3IsMnOXt31XGF4Z6G1Q5A-n2A&oe=6757308F" 
+          alt="Imagen Salones">
+        <div class="overlay"><p>Salones</p></div>
       </div>
-      
+      <div class="image-item" id="banqueteria" (click)="navigateTo('/banqueteria')">
+        <img 
+          src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEizUJK6X9JZP1F3jTDy_vcPvis-H_660rK1ehKMF1QlnSo5ZmHZ7JN9aeG-4zPksOooQCtK8IvBf9BgeFLW8YwjqTTJQWDUVa_KwwoLXndJPC31jeobtP434hBcqYRRA1y-dvPW4ZaYaWo/s1600/FLAVOURS.jpg" 
+          alt="Imagen Banquetería">
+        <div class="overlay"><p>Banquetería</p></div>
+      </div>
+      <div class="image-item" id="entretenimiento" (click)="navigateTo('/entretenimiento')">
+        <img 
+          src="https://media.v2.siweb.es/uploaded_thumb_seo/e89129f136877ce57afcc6e44fccbb55/batucada_2.jpg" 
+          alt="Imagen Entretenimiento">
+        <div class="overlay"><p>Entretenimiento</p></div>
+      </div>
+    </div>
 
-  <!-- Sección de Servicios Destacados -->
-  <div class="featured-services">
+    <!-- Sección de Servicios Destacados -->
+    <div class="featured-services">
       <h2>Servicios Destacados</h2>
       <div class="services-grid">
-          <div class="service-card">Ejemplo Servicio 1</div>
-          <div class="service-card">Ejemplo Servicio 2</div>
-          <div class="service-card">Ejemplo Servicio 3</div>
-          <div class="service-card">Ejemplo Servicio 4</div>
+        <div class="service-card">Ejemplo Servicio 1</div>
+        <div class="service-card">Ejemplo Servicio 2</div>
+        <div class="service-card">Ejemplo Servicio 3</div>
+        <div class="service-card">Ejemplo Servicio 4</div>
       </div>
-  </div>
+    </div>
 
-  <!-- Contenedor para Opiniones y Sobre Nosotros -->
-  <div class="content-columns">
+    <!-- Contenedor para Opiniones y Sobre Nosotros -->
+    <div class="content-columns">
       <!-- Sección de Opiniones -->
       <div class="opinions-section">
-          <div class="opinion">
-              <div class="stars">★★★★☆</div>
-              <p class="reviewer-name">Juan Pérez</p>
-              <p class="review-text">"Excelente servicio y atención. Los salones eran amplios y bien decorados. Definitivamente repetiría."</p>
-          </div>
-          <div class="opinion">
-              <div class="stars">★★★★★</div>
-              <p class="reviewer-name">María López</p>
-              <p class="review-text">"Increíble experiencia, lo recomiendo mucho. La comida fue exquisita y el servicio atento."</p>
-          </div>
-          <div class="opinion">
-              <div class="stars">★★★★☆</div>
-              <p class="reviewer-name">Carlos Sánchez</p>
-              <p class="review-text">"Gran ambiente y excelente organización. Disfruté mucho el evento y todo salió perfecto."</p>
-          </div>
+        <div class="opinion">
+          <div class="stars">★★★★☆</div>
+          <p class="reviewer-name">Juan Pérez</p>
+          <p class="review-text">"Excelente servicio y atención. Los salones eran amplios y bien decorados. Definitivamente repetiría."</p>
+        </div>
+        <div class="opinion">
+          <div class="stars">★★★★★</div>
+          <p class="reviewer-name">María López</p>
+          <p class="review-text">"Increíble experiencia, lo recomiendo mucho. La comida fue exquisita y el servicio atento."</p>
+        </div>
+        <div class="opinion">
+          <div class="stars">★★★★☆</div>
+          <p class="reviewer-name">Carlos Sánchez</p>
+          <p class="review-text">"Gran ambiente y excelente organización. Disfruté mucho el evento y todo salió perfecto."</p>
+        </div>
       </div>
 
       <!-- Sección de Sobre Nosotros -->
       <div class="about-section">
-          <h2>Sobre Nosotros</h2>
-          <p>
-              François Hollan Banquetería cuenta con más de 20 años de experiencia en la organización de eventos de
-              alto nivel, brindando servicios de calidad en salones, banquetes y entretenimiento. Nos especializamos en
-              crear experiencias únicas para cada evento, adaptándonos a las necesidades de nuestros clientes. Con un equipo
-              altamente capacitado, nos aseguramos de que cada detalle sea perfecto.
-          </p>
-          <img src="https://shanghai-hotel-holland.utrechthotels.net/data/Imgs/OriginalPhoto/12843/1284395/1284395473/img-shanghai-hotel-holland-delft-46.JPEG" alt="Sobre Nosotros" class="about-image">
+        <h2>Sobre Nosotros</h2>
+        <p>
+          François Hollan Banquetería cuenta con más de 20 años de experiencia en la organización de eventos de
+          alto nivel, brindando servicios de calidad en salones, banquetes y entretenimiento. Nos especializamos en
+          crear experiencias únicas para cada evento, adaptándonos a las necesidades de nuestros clientes. Con un equipo
+          altamente capacitado, nos aseguramos de que cada detalle sea perfecto.
+        </p>
+        <img src="https://shanghai-hotel-holland.utrechthotels.net/data/Imgs/OriginalPhoto/12843/1284395/1284395473/img-shanghai-hotel-holland-delft-46.JPEG" alt="Sobre Nosotros" class="about-image">
       </div>
+    </div>
   </div>
+
+  <app-footer></app-footer>
 </div>
-<app-footer></app-footer>

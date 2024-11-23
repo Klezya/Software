@@ -1,23 +1,25 @@
-<app-navbar></app-navbar>
+<div class="contenedor-principal">
+  <app-navbar></app-navbar>
 
-<div class="carrito">
-  <h2>Productos y Servicios Seleccionados</h2>
+  <div class="carrito">
+    <h2>Productos y Servicios Seleccionados</h2>
 
-  <!-- Mostrar productos del carrito -->
-  <div *ngIf="carrito.length > 0; else carritoVacio">
-    <div *ngFor="let producto of carrito" class="carrito-item">
-      <p>
-        {{ producto.nombre }} - ${{ producto.precio }} x {{ producto.cantidad }}
-        <button (click)="eliminarDelCarrito(producto)">Eliminar</button>
-      </p>
+    <!-- Mostrar productos del carrito -->
+    <div *ngIf="carrito.length > 0; else carritoVacio">
+      <div *ngFor="let producto of carrito" class="carrito-item">
+        <p>
+          {{ producto.nombre }} - ${{ producto.precio }} x {{ producto.cantidad }}
+          <button (click)="eliminarDelCarrito(producto)">Eliminar</button>
+        </p>
+      </div>
+      <p><strong>Total: ${{ calcularTotal() }}</strong></p>
     </div>
-    <p><strong>Total: ${{ calcularTotal() }}</strong></p>
+
+    <!-- Mensaje si el carrito está vacío -->
+    <ng-template #carritoVacio>
+      <p>No hay Productos Seleccionados</p>
+    </ng-template>
   </div>
 
-  <!-- Mensaje si el carrito está vacío -->
-  <ng-template #carritoVacio>
-    <p>No hay Productos Seleccionados</p>
-  </ng-template>
+  <app-footer></app-footer>
 </div>
-
-<app-footer></app-footer> 
