@@ -22,6 +22,7 @@ export class IniciarSesionUsuarioComponent {
   constructor(private carrito: CarritoService, private router: Router) { }
 
 
+  // Función para validar el rut falta si, jaja ayuda
   onSubmit() {
     const cliente = {
       nombre: this.nombre,
