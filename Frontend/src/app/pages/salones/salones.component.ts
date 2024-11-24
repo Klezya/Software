@@ -1,16 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavbarComponent } from '../../components/navbar/navbar.component';
 import { FooterComponent } from '../../components/footer/footer.component';
-
-interface Service {
-  id: number;
-  name: string;
-  description: string;
-  price: number;
-  image: string;
-  category: string;
-}
+import { Service } from '../../interface/interfaces';
+import { DatabaseService } from '../../service/database.service';
 
 @Component({
   selector: 'app-salones',
@@ -19,34 +12,35 @@ interface Service {
   standalone: true,
   imports: [CommonModule, NavbarComponent, FooterComponent],
 })
-export class SalonesComponent {
-  services: Service[] = [
-    { id: 1, name: 'Salón Castillo', description: 'Viña del Mar, Valparaíso', price: 150, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8nqO4-bsCTtasrVlJxUsxQ85a5_NSLziz0g&s', category: 'Grande' },
-    { id: 2, name: 'Queen Mary', description: 'Viña del Mar, Valparaíso', price: 300, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQF-oXD2BJBEA2w-zgzFFBueYOl7JBWoBEaGA&s', category: 'Mediano' },
-    { id: 3, name: 'Salón Esmeralda', description: 'Club Hípico, Santiago', price: 200, image: 'https://image-tc.galaxy.tf/wijpeg-6g1qabb8fle0whipem12v1orv/salon-manquehue-result_standard.jpg?crop=99%2C0%2C1603%2C1202', category: 'Mediano-Junior' },
-  ];
+export class SalonesComponent implements OnInit {
+  salones: Service[] = [];
+  salones_filtrados: Service[] = [];
+  filtros: string[] = ['Todos','Grande', 'Mediano', 'Mediano Junior'];
+  capacidades: Map<string, number> = new Map();
 
-  filters: string[] = ['Todos', 'Grande', 'Mediano', 'Mediano-Junior'];
-  activeFilter: string = 'Todos';
-  filteredServices: Service[] = [...this.services];
-  selectedService: Service | null = null;
+  constructor(
+    private databaseService: DatabaseService
+  ) { }
 
-  applyFilter(filter: string) {
-    this.activeFilter = filter;
-    this.filteredServices = filter === 'Todos' ? this.services : this.services.filter(service => service.category === filter);
+  async ngOnInit(): Promise<void> {
+    this.inicializarCapacidades();
+    this.salones = await this.databaseService.getSalones();
   }
 
-  openModal(service: Service) {
-    this.selectedService = service;
+  applyFilter(capacidad: string) {
+    if (capacidad === 'Todos') {
+      this.salones_filtrados = this.salones;
+    } else {
+      this.salones_filtrados = this.salones.filter(salon => salon.capacidad === this.capacidades.get(capacidad));
+    }
   }
 
-  closeModal(event: Event) {
-    this.selectedService = null;
+  inicializarCapacidades() {
+    this.capacidades.set('Grande', 1000);
+    this.capacidades.set('Mediano', 500);
+    this.capacidades.set('Mediano Junior', 400);
   }
 
-  addToCart(service: Service) {
-    console.log('Añadido al carrito:', service);
-  }
 }
 
 

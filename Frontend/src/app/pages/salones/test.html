@@ -1,0 +1,73 @@
+<app-navbar></app-navbar>
+<div class="page-container">
+  <!-- Barra lateral con filtros -->
+  <aside class="sidebar">
+    <h3>Filtros</h3>
+    <ul>
+      <li *ngFor="let filter of filters" 
+          (click)="applyFilter(filter)" 
+          [class.active]="activeFilter === filter">
+        {{ filter }}
+      </li>
+    </ul>
+  </aside>
+
+  <!-- Contenedor principal -->
+  <main class="main-content">
+    <div class="services-container">
+      <div 
+        class="service-card" 
+        *ngFor="let service of services"
+        >
+        <!-- Imagen en la izquierda -->
+        <div class="card-image">
+          <img [src]="service.img" alt="{{ service.titulo }}" />
+        </div>
+        <!-- Contenido a la derecha -->
+        <div class="card-content">
+          <h3 class="service-title">{{ service.titulo }}</h3>
+          <p class="service-description">{{ service.descripcion }}</p>
+          <div class="card-footer">
+            <div class="rating">
+              <span class="score">8.8</span>
+
+            </div>
+            <span class="price">Desde {{ service.precio | currency }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <!-- Modal para la card expandida -->
+  <div class="modal" *ngIf="selectedService" (click)="closeModal($event)">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <div class="modal-grid">
+        <!-- Columna izquierda: Imagen -->
+        <div class="modal-image">
+          <img [src]="selectedService.image" alt="{{ selectedService.name }}" />
+        </div>
+
+        <!-- Columna derecha: Información -->
+        <div class="modal-details">
+          <!-- Título -->
+          <h3 class="service-title">{{ selectedService.name }}</h3>
+
+          <!-- Descripción -->
+          <p class="service-description">{{ selectedService.description }}</p>
+
+          <!-- Pie de la columna derecha -->
+          <div class="details-footer">
+            <!-- Precio -->
+            <span class="price">{{ selectedService.price | currency }}</span>
+
+            <!-- Botón con forma de carrito -->
+            <button class="add-to-cart">
+              <i class="fa fa-shopping-cart"></i> Añadir al Carrito
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

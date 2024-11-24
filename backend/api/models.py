@@ -10,6 +10,7 @@ class Servicio(models.Model):
     menu = models.CharField(max_length=500)
     capacidad = models.IntegerField()
     infraestructura = models.CharField(max_length=500)
+    img = models.CharField(max_length=500)
 
 class Cliente(models.Model):
     idcliente = models.AutoField(primary_key=True)
