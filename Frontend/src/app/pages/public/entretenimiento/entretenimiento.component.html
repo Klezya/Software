@@ -41,7 +41,7 @@
     </div>
   </main>
   <!--Modal-->
-  <div class="modal" *ngIf="seleccion" (click)="closeModal($event)">
+  <div class="modal" *ngIf="seleccion" (click)="closeModal()">
     <div class="modal-content" (click)="$event.stopPropagation()">
       <div class="modal-grid">
         <!-- Columna izquierda: Imagen -->
@@ -55,6 +55,8 @@
           <h3 class="service-title">{{ seleccion.titulo }}</h3>
           <!-- Descripción -->
           <p class="service-description">{{ seleccion.descripcion }}</p>
+          <p>Infraestructura: {{seleccion.infraestructura}}</p>
+          <p>Tipo: {{seleccion.especialidad}}</p>
           <!-- Pie de la columna derecha -->
           <div class="details-footer">
             <!-- Precio -->
@@ -63,7 +65,7 @@
             <button class="add-to-cart" (click)="addToCart(seleccion)">
               <i class="fa fa-shopping-cart"></i> Añadir al Carrito
             </button>
-            <button class="add-to-cart" (click)="closeModal($event)">
+            <button class="add-to-cart" (click)="closeModal()">
               <i class="fa fa-shopping-cart"></i> X
             </button>
           </div>

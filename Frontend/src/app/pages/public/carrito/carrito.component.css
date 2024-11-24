@@ -35,3 +35,24 @@ button {
 button:hover {
   background-color: #00e1e1;
 }
+
+/* Estilos para el botón de pago */
+.btn-pagar {
+  display: block;
+  width: 100%;
+  padding: 15px;
+  margin-top: 20px;
+  background-color: #28a745;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-pagar:hover {
+  background-color: #218838;
+}

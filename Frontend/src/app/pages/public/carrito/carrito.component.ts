@@ -2,13 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavbarComponent } from '../../../components/navbar/navbar.component';
 import { FooterComponent } from '../../../components/footer/footer.component';
-
-interface Producto {
-  id: number;
-  nombre: string;
-  precio: number;
-  cantidad: number;
-}
+import { Service } from '../../../interface/interfaces';
+import { CarritoService } from '../../../service/carrito.service';
 
 @Component({
   selector: 'app-carrito',
@@ -18,17 +13,25 @@ interface Producto {
   imports: [CommonModule, NavbarComponent, FooterComponent],
 })
 export class CarritoComponent implements OnInit {
-  carrito: Producto[] = [];
+  carrito: Service[] = [];
 
-  constructor() {}
+  constructor(private carritoService: CarritoService) {}
 
   ngOnInit() {
+    this.carrito = this.carritoService.obtenerCarrito();
+    console.log(this.carrito);
   }
 
-  eliminarDelCarrito(producto: Producto) {
+  eliminarDelCarrito(servicio: Service) {
+    this.carritoService.eliminarDelCarrito(servicio);
+    this.carrito = this.carritoService.obtenerCarrito();
   }
 
   calcularTotal(): number {
-    return 1;
+    return this.carritoService.calcularTotal();
+  }
+
+  pagar() {
+    alert('Pago realizado con éxito!');
   }
 }

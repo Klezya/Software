@@ -8,11 +8,13 @@
     <div *ngIf="carrito.length > 0; else carritoVacio">
       <div *ngFor="let producto of carrito" class="carrito-item">
         <p>
-          {{ producto.nombre }} - ${{ producto.precio }} x {{ producto.cantidad }}
+          {{ producto.titulo }} - {{ producto.precio | currency}}
           <button (click)="eliminarDelCarrito(producto)">Eliminar</button>
         </p>
       </div>
-      <p><strong>Total: ${{ calcularTotal() }}</strong></p>
+      <p><strong>Total: {{ calcularTotal() | currency }}</strong></p>
+      <!-- Botón de pago -->
+      <button class="btn-pagar" (click)="pagar()">Pagar</button>
     </div>
 
     <!-- Mensaje si el carrito está vacío -->
@@ -20,6 +22,7 @@
       <p>No hay Productos Seleccionados</p>
     </ng-template>
   </div>
+  
 
   <app-footer></app-footer>
 </div>

@@ -40,7 +40,7 @@
     </div>
   </main>
   <!--Modal-->
-  <div class="modal" *ngIf="seleccion" (click)="closeModal($event)">
+  <div class="modal" *ngIf="seleccion" (click)="closeModal()">
     <div class="modal-content" (click)="$event.stopPropagation()">
       <div class="modal-grid">
         <!-- Columna izquierda: Imagen -->
@@ -54,21 +54,28 @@
           <h3 class="service-title">{{ seleccion.titulo }}</h3>
           <!-- Descripción -->
           <p class="service-description">{{ seleccion.descripcion }}</p>
+          <p>Menu: {{seleccion.menu}}</p>
+          <p>Infraestructura {{seleccion.infraestructura}}<p>
+          <p>Tipo de Menu: {{seleccion.especialidad}}</p>
+          <p>Cantidad: {{seleccion.capacidad}} platos</p>
+          
+          <input id="input-plato-extra" type="number" min="0" [(ngModel)]="valor_adicional" [defaultValue]="0" (input)="asegurarValorAbsoluto()">
+          <p>Precio por plato adicional: {{seleccion.precio * 0.005}}</p>
           <!-- Pie de la columna derecha -->
           <div class="details-footer">
             <!-- Precio -->
-            <span class="price">{{ seleccion.precio | currency }}</span>
+            <span class="price">{{ seleccion.precio + valor_adicional*seleccion.precio*0.005 | currency }}</span>
             <!-- Botón con forma de carrito -->
             <button class="add-to-cart" (click)="addToCart(seleccion)">
               <i class="fa fa-shopping-cart"></i> Añadir al Carrito
             </button>
-            <button class="add-to-cart" (click)="closeModal($event)">
+            <button class="add-to-cart" (click)="closeModal()">
               <i class="fa fa-shopping-cart"></i> X
             </button>
           </div>
         </div>
       </div>
     </div>
-    </div>
+  </div>
 </div>
 <app-footer></app-footer>

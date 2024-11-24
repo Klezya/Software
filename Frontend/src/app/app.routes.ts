@@ -10,6 +10,7 @@ import { ContactoComponent } from './pages/public/contacto/contacto.component';
 import { CarritoComponent } from './pages/public/carrito/carrito.component';
 import { IniciarSesionAdminComponent } from './pages/admin/iniciar-sesion-admin/iniciar-sesion-admin.component';
 import { IniciarSesionUsuarioComponent } from './pages/user/iniciar-sesion-usuario/iniciar-sesion-usuario.component';
+import { PagoComponent } from './pages/public/pago/pago.component';
 
 
 export const routes: Routes = [
@@ -22,5 +23,6 @@ export const routes: Routes = [
   { path: 'carrito', component: CarritoComponent },
   { path: 'iniciar-sesion-admin', component: IniciarSesionAdminComponent },
   { path: 'iniciar-sesion-usuario', component: IniciarSesionUsuarioComponent },
+  { path: 'pago', component: PagoComponent },
   { path: '**', redirectTo: '' }  // Redirigir a Home si la ruta no existe
 ];

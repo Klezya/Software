@@ -4,6 +4,7 @@ import { NavbarComponent } from '../../../components/navbar/navbar.component';
 import { FooterComponent } from '../../../components/footer/footer.component';
 import { Service } from '../../../interface/interfaces';
 import { DatabaseService } from '../../../service/database.service';
+import { CarritoService } from '../../../service/carrito.service';
 
 @Component({
   selector: 'app-salones',
@@ -15,12 +16,13 @@ import { DatabaseService } from '../../../service/database.service';
 export class SalonesComponent implements OnInit {
   salones: Service[] = [];
   salones_filtrados: Service[] = [];
-  filtros: string[] = ['Todos','Grande', 'Mediano', 'Mediano Junior'];
+  filtros: string[] = ['Todos', 'Grande', 'Mediano', 'Mediano Junior'];
   filtro_seleccionado: string = 'Todos';
   seleccion: Service | null = null;
 
   constructor(
     private databaseService: DatabaseService,
+    private carritoService: CarritoService
   ) { }
 
   async ngOnInit() {
@@ -41,14 +43,16 @@ export class SalonesComponent implements OnInit {
     this.seleccion = service;
   }
 
-  closeModal(event: Event) {
+  closeModal() {
     this.seleccion = null;
   }
 
   addToCart(service: Service) {
+    this.carritoService.agregarAlCarrito(service);
+    alert('Añadido al carrito: ' + service.titulo); // Mostrar alerta
+    this.closeModal();
     console.log('Añadido al carrito:', service);
   }
-
 }
 
 

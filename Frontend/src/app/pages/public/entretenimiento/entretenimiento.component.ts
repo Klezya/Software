@@ -4,6 +4,7 @@ import { NavbarComponent } from '../../../components/navbar/navbar.component';
 import { FooterComponent } from '../../../components/footer/footer.component';
 import { DatabaseService } from '../../../service/database.service';
 import { Service } from '../../../interface/interfaces';
+import { CarritoService } from '../../../service/carrito.service';
 
 @Component({
   selector: 'app-entretenimiento',
@@ -20,7 +21,8 @@ export class EntretenimientoComponent {
   seleccion: Service | null = null;
 
   constructor(
-    private databaseService: DatabaseService
+    private databaseService: DatabaseService,
+    private carritoService: CarritoService
   ) { }
 
   async ngOnInit() {
@@ -41,11 +43,14 @@ export class EntretenimientoComponent {
     this.seleccion = service;
   }
 
-  closeModal(event: Event) {
+  closeModal() {
     this.seleccion = null;
   }
 
   addToCart(service: Service) {
+    this.carritoService.agregarAlCarrito(service);
+    alert('Añadido al carrito: ' + service.titulo); // Mostrar alerta
+    this.closeModal();
     console.log('Añadido al carrito:', service);
   }
 }
