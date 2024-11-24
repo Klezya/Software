@@ -43,6 +43,19 @@ body {
   border-radius: 5px;
 }
 
+.sidebar ul li {
+  cursor: pointer;
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 5px;
+}
+
+.sidebar ul li.selected {
+  background-color: #4caf50;
+  color: #fff;
+  font-weight: bold;
+}
+
 .sidebar li:hover {
   background-color: #ddd;
 }

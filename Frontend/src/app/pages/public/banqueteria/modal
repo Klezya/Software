@@ -1,0 +1,31 @@
+ <!-- Modal para la card expandida --> hay que implementarlo
+ <div class="modal" *ngIf="selectedService" (click)="closeModal($event)">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <div class="modal-grid">
+      <!-- Columna izquierda: Imagen -->
+      <div class="modal-image">
+        <img [src]="selectedService.image" alt="{{ selectedService.name }}" />
+      </div>
+
+      <!-- Columna derecha: Información -->
+      <div class="modal-details">
+        <!-- Título -->
+        <h3 class="service-title">{{ selectedService.name }}</h3>
+
+        <!-- Descripción -->
+        <p class="service-description">{{ selectedService.description }}</p>
+
+        <!-- Pie de la columna derecha -->
+        <div class="details-footer">
+          <!-- Precio -->
+          <span class="price">{{ selectedService.price | currency }}</span>
+
+          <!-- Botón con forma de carrito -->
+          <button class="add-to-cart" (click)="addToCart(selectedService)">
+            <i class="fa fa-shopping-cart"></i> Añadir al Carrito
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

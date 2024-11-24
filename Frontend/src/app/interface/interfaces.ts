@@ -9,4 +9,5 @@ export interface Service {
     capacidad: number;
     infraestructura: string;
     img: string;
+    especialidad: string;
 }

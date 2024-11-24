@@ -17,31 +17,25 @@ export class SalonesComponent implements OnInit {
   salones_filtrados: Service[] = [];
   filtros: string[] = ['Todos','Grande', 'Mediano', 'Mediano Junior'];
   filtro_seleccionado: string = 'Todos';
-  capacidades: Map<string, number> = new Map();
 
   constructor(
     private databaseService: DatabaseService
   ) { }
 
-  async ngOnInit(): Promise<void> {
-    this.inicializarCapacidades();
+  async ngOnInit() {
     this.salones = await this.databaseService.getSalones();
+    this.salones_filtrados = this.salones;
   }
 
-  applyFilter(capacidad: string) {
-    this.filtro_seleccionado = capacidad;
-    if (capacidad === 'Todos') {
+  applyFilter(especialidad: string) {
+    this.filtro_seleccionado = especialidad;
+    if (especialidad === 'Todos') {
       this.salones_filtrados = this.salones;
     } else {
-      this.salones_filtrados = this.salones.filter(salon => salon.capacidad === this.capacidades.get(capacidad));
+      this.salones_filtrados = this.salones.filter(salon => salon.especialidad === especialidad);
     }
   }
 
-  inicializarCapacidades() {
-    this.capacidades.set('Grande', 1000);
-    this.capacidades.set('Mediano', 500);
-    this.capacidades.set('Mediano Junior', 400);
-  }
 
 }
 
