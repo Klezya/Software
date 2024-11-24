@@ -19,7 +19,10 @@
           <p>Menú: {{ servicio.servicio.menu }}</p>
           <p>Infraestructura: {{ servicio.servicio.infraestructura }}</p>
           <p>Especialidad: {{ servicio.servicio.especialidad }}</p>
-          <p>Cantidad de platos adicionales: {{ servicio.cantidad_personas }}</p>
+          <div *ngIf="servicio.cantidad_personas > 0">
+            <p>Cantidad de platos adicionales: {{ servicio.cantidad_personas }}</p>
+            <p>Cobro adicional por platos: {{servicio.servicio.precio*0.005*servicio.cantidad_personas| currency}}</p>
+          </div>
         </div>
         <div *ngIf="servicio.servicio.tipo_servicio === 'Evento'">
           <p>Infraestructura: {{ servicio.servicio.infraestructura }}</p>
@@ -30,6 +33,7 @@
       <p><strong>Total: {{ calcularTotal() | currency }}</strong></p>
       <!-- Botón de pago -->
       <button class="btn-pagar" (click)="pagar()">Pagar</button>
+      <p>A la hora de pagar se le pedira el 50% del monto total como abono</p>
     </div>
 
     <!-- Mensaje si el carrito está vacío -->

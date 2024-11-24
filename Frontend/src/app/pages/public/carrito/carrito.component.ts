@@ -4,6 +4,7 @@ import { NavbarComponent } from '../../../components/navbar/navbar.component';
 import { FooterComponent } from '../../../components/footer/footer.component';
 import { Service } from '../../../interface/interfaces';
 import { CarritoService } from '../../../service/carrito.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-carrito',
@@ -15,7 +16,7 @@ import { CarritoService } from '../../../service/carrito.service';
 export class CarritoComponent implements OnInit {
   carrito: {servicio: Service, cantidad_personas: number}[] = [];
 
-  constructor(private carritoService: CarritoService) {}
+  constructor(private carritoService: CarritoService, private router: Router) {}
 
   ngOnInit() {
     this.carrito = this.carritoService.obtenerCarrito();
@@ -32,6 +33,6 @@ export class CarritoComponent implements OnInit {
   }
 
   pagar() {
-    alert('Pago realizado con éxito!');
+    this.router.navigate(['/iniciar-sesion-usuario']);
   }
 }

@@ -13,11 +13,10 @@ export interface Service {
 }
 
 export interface Client {
-    id: number;
     rut: string;
     nombre: string;
     apellido: string;
-    email: string;
+    correo: string;
 }
 
 export interface Reservation {
@@ -29,4 +28,9 @@ export interface Reservation {
     idcliente: number;
     cantidad_personas: number;
     N_reserva: string;
+}
+
+export interface Adicional {
+    cantidad_personas: number;
+    valor_adicional: number;
 }

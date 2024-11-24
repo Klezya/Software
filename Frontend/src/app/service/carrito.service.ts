@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Service } from '../interface/interfaces';
+import { Client } from '../interface/interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -7,12 +8,15 @@ import { Service } from '../interface/interfaces';
 export class CarritoService {
   private carrito: { servicio: Service, cantidad_personas: number }[] = [];
   private readonly STORAGE_KEY = 'carrito';
+  private cliente: Client | null = null;
+  private readonly STORAGE_KEY_CLIENT = 'cliente';
 
   constructor() {
     this.cargarCarrito();
     for (let item of this.carrito) {
       item.servicio.precio = Number(item.servicio.precio);
     }
+    this.cargarCliente();
   }
 
   private guardarCarrito(): void {
@@ -23,6 +27,19 @@ export class CarritoService {
     const carritoGuardado = localStorage.getItem(this.STORAGE_KEY);
     if (carritoGuardado) {
       this.carrito = JSON.parse(carritoGuardado);
+    }
+  }
+
+  private guardarCliente(): void {
+    if (this.cliente) {
+      localStorage.setItem(this.STORAGE_KEY_CLIENT, JSON.stringify(this.cliente));
+    }
+  }
+
+  private cargarCliente(): void {
+    const clienteGuardado = localStorage.getItem(this.STORAGE_KEY_CLIENT);
+    if (clienteGuardado) {
+      this.cliente = JSON.parse(clienteGuardado);
     }
   }
 
@@ -43,6 +60,11 @@ export class CarritoService {
     return this.carrito;
   }
 
+  vaciarCarrito(): void {
+    this.carrito = [];
+    this.guardarCarrito();
+  }
+
   calcularTotal(): number {
     let total = 0;
     for (let item of this.carrito) {
@@ -53,5 +75,19 @@ export class CarritoService {
       }
     }
     return total;
+  }
+  
+  getCliente(): Client | null {
+    return this.cliente;
+  }
+
+  setCliente(cliente: Client): void {
+    this.cliente = cliente;
+    this.guardarCliente();
+  }
+
+  clearCliente(): void {
+    this.cliente = null;
+    localStorage.removeItem(this.STORAGE_KEY_CLIENT);
   }
 }
