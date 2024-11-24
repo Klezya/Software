@@ -2,22 +2,30 @@
   <app-navbar></app-navbar>
 
   <div class="form-container">
-    <h2>Ingrese sus datos</h2>
-    <form (ngSubmit)="onSubmit()">
-      <label for="nombre">Nombre:</label>
-      <input type="text" id="nombre" [(ngModel)]="nombre" name="nombre" required>
+    <!-- Columna izquierda: Imagen fija -->
+    <div class="form-image">
+      <img src="https://img.freepik.com/fotos-premium/mesa-decoracion-bodas-mantel-blanco-alfombra-alfombra-lugar-ella_1129635-2675.jpg?uid=R135651730&semt=ais_hybrid" alt="Imagen representativa">
+    </div>
 
-      <label for="apellido">Apellido:</label>
-      <input type="text" id="apellido" [(ngModel)]="apellido" name="apellido" required>
+    <!-- Columna derecha: Formulario -->
+    <div class="form-content">
+      <h2>Ingrese sus datos</h2>
+      <form (ngSubmit)="onSubmit()">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" [(ngModel)]="nombre" name="nombre" required>
 
-      <label for="rut">RUT:</label>
-      <input type="text" id="rut" [(ngModel)]="rut" name="rut" required>
+        <label for="apellido">Apellido:</label>
+        <input type="text" id="apellido" [(ngModel)]="apellido" name="apellido" required>
 
-      <label for="correo">Correo:</label>
-      <input type="email" id="correo" [(ngModel)]="correo" name="correo" required>
+        <label for="rut">RUT:</label>
+        <input type="text" id="rut" [(ngModel)]="rut" name="rut" required>
 
-      <button type="submit">Enviar</button>
-    </form>
+        <label for="correo">Correo:</label>
+        <input type="email" id="correo" [(ngModel)]="correo" name="correo" required>
+
+        <button type="submit">Enviar</button>
+      </form>
+    </div>
   </div>
 
   <app-footer></app-footer>
