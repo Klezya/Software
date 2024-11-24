@@ -27,7 +27,7 @@ export interface Reservation {
     metodo_de_pago: string;
     idcliente: number;
     cantidad_personas: number;
-    N_reserva: number;
+    idservicio: number;
 }
 
 export interface Adicional {

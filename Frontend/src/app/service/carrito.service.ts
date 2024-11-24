@@ -17,6 +17,7 @@ export class CarritoService {
     this.cargarCarrito();
     for (let item of this.carrito) {
       item.servicio.precio = Number(item.servicio.precio);
+      item.cantidad_personas = Number(item.cantidad_personas);
     }
     this.cargarCliente();
   }
@@ -95,18 +96,22 @@ export class CarritoService {
 
   async registrarReserva(): Promise<void> {
     const reserva: Reservation = {
-      id: 0,
-      pago_total: 0,
-      fecha: "",
-      estado_pago: "a",
-      metodo_de_pago: "a",
-      idcliente: 0,
-      cantidad_personas: 0,
-      N_reserva: 0,
+      id: 12,
+      pago_total: 1000,
+      fecha: "2024-12-12",
+      estado_pago: "Abonado",
+      metodo_de_pago: "Efectivo",
+      idcliente: 2,
+      cantidad_personas: 10,
+      idservicio: 8,
     }
-    await axios.post('http://localhost:8000/reservas', reserva);
-
-    this.vaciarCarrito();
-    this.clearCliente();
+    try {
+      const response = await axios.post('http://localhost:8000/api/reservas/', reserva);
+      console.log(response.data);
+      this.vaciarCarrito();
+      this.clearCliente();
+    } catch (error) {
+      console.error(error);
+    }  
   }
 }

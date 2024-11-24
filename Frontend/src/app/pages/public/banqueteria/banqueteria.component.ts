@@ -57,6 +57,7 @@ export class BanqueteriaComponent {
     alert('Añadido al carrito: ' + service.titulo); // Mostrar alerta
     this.closeModal();
     console.log('Añadido al carrito:', service);
+    this.cantidad_personas = 0;
   }
 
   asegurarValorAbsoluto() {

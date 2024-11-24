@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework import viewsets
-from .models import Servicio, Cliente, Reserva, Servicio_Reserva, Personal
-from .serializers import ServicioSerializer, ClienteSerializer, ReservaSerializer, ServicioReservaSerializer, PersonalSerializer
+from .models import Servicio, Cliente, Reserva, Personal
+from .serializers import ServicioSerializer, ClienteSerializer, ReservaSerializer, PersonalSerializer
 
 class ServicioViewSet(viewsets.ModelViewSet):
     queryset = Servicio.objects.all()
@@ -14,10 +14,6 @@ class ClienteViewSet(viewsets.ModelViewSet):
 class ReservaViewSet(viewsets.ModelViewSet):
     queryset = Reserva.objects.all()
     serializer_class = ReservaSerializer
-
-class ServicioReservaViewSet(viewsets.ModelViewSet):
-    queryset = Servicio_Reserva.objects.all()
-    serializer_class = ServicioReservaSerializer
 
 class PersonalViewSet(viewsets.ModelViewSet):
     queryset = Personal.objects.all()
