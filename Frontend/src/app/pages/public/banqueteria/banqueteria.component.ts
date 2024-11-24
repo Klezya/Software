@@ -17,6 +17,7 @@ export class BanqueteriaComponent {
   banquetes_filtrados: Service[] = [];
   filtros: string[] = ['Todos','Buffet','Gourmet', 'Vegano'];
   filtro_seleccionado: string = 'Todos';
+  seleccion: Service | null = null;
 
   constructor(
     private databaseService: DatabaseService
@@ -37,14 +38,13 @@ export class BanqueteriaComponent {
     }
   }
 
-  /* Dejo la pantilla del modal para implementar luego
   openModal(service: Service) {
-    this.selectedService = service;
+    this.seleccion = service;
   }
 
   closeModal(event: Event) {
-    this.selectedService = null;
-  }*/
+    this.seleccion = null;
+  }
 
   addToCart(service: Service) {
     console.log('Añadido al carrito:', service);

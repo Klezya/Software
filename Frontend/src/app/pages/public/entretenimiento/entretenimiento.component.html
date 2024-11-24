@@ -19,6 +19,7 @@
       <div 
         class="service-card" 
         *ngFor="let evento of eventos_filtrados"
+        (click)="openModal(evento)"
         >
         <!-- Imagen en la izquierda -->
         <div class="card-image">
@@ -39,7 +40,37 @@
       </div>
     </div>
   </main>
-
+  <!--Modal-->
+  <div class="modal" *ngIf="seleccion" (click)="closeModal($event)">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <div class="modal-grid">
+        <!-- Columna izquierda: Imagen -->
+        <div class="modal-image">
+          <img [src]="seleccion.img" alt="{{ seleccion.titulo }}" />
+        </div>
+  
+        <!-- Columna derecha: Información -->
+        <div class="modal-details">
+          <!-- Título -->
+          <h3 class="service-title">{{ seleccion.titulo }}</h3>
+          <!-- Descripción -->
+          <p class="service-description">{{ seleccion.descripcion }}</p>
+          <!-- Pie de la columna derecha -->
+          <div class="details-footer">
+            <!-- Precio -->
+            <span class="price">{{ seleccion.precio | currency }}</span>
+            <!-- Botón con forma de carrito -->
+            <button class="add-to-cart" (click)="addToCart(seleccion)">
+              <i class="fa fa-shopping-cart"></i> Añadir al Carrito
+            </button>
+            <button class="add-to-cart" (click)="closeModal($event)">
+              <i class="fa fa-shopping-cart"></i> X
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
 
 </div>
 <app-footer></app-footer>

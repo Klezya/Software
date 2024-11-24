@@ -95,6 +95,10 @@ body {
   background-color: #fff;
 }
 
+.service-card:hover {
+  box-shadow: 0 0 15px rgba(0, 128, 0, 0.5); /* Sombra verde alrededor */
+}
+
 .service-card img {
   width: 150px; /* Fixed width */
   height: 100%; /* Matches the height of the card */

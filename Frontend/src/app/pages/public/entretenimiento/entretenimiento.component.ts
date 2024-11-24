@@ -17,6 +17,7 @@ export class EntretenimientoComponent {
   eventos_filtrados: Service[] = [];
   filtros: string[] = ['Todos','Musica', 'Show'];
   filtro_seleccionado: string = 'Todos';
+  seleccion: Service | null = null;
 
   constructor(
     private databaseService: DatabaseService
@@ -34,5 +35,17 @@ export class EntretenimientoComponent {
     } else {
       this.eventos_filtrados = this.eventos.filter(evento => evento.especialidad === especialidad);
     }
+  }
+
+  openModal(service: Service) {
+    this.seleccion = service;
+  }
+
+  closeModal(event: Event) {
+    this.seleccion = null;
+  }
+
+  addToCart(service: Service) {
+    console.log('Añadido al carrito:', service);
   }
 }

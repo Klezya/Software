@@ -17,9 +17,10 @@ export class SalonesComponent implements OnInit {
   salones_filtrados: Service[] = [];
   filtros: string[] = ['Todos','Grande', 'Mediano', 'Mediano Junior'];
   filtro_seleccionado: string = 'Todos';
+  seleccion: Service | null = null;
 
   constructor(
-    private databaseService: DatabaseService
+    private databaseService: DatabaseService,
   ) { }
 
   async ngOnInit() {
@@ -36,6 +37,17 @@ export class SalonesComponent implements OnInit {
     }
   }
 
+  openModal(service: Service) {
+    this.seleccion = service;
+  }
+
+  closeModal(event: Event) {
+    this.seleccion = null;
+  }
+
+  addToCart(service: Service) {
+    console.log('Añadido al carrito:', service);
+  }
 
 }
 
