@@ -33,10 +33,7 @@ export class PagoComponent implements OnInit {
   pagar() {
     alert('Pago realizado con éxito');
     this.router.navigate(['/']);
-    this.carritoService.vaciarCarrito();
-    this.carritoService.clearCliente();
-    console.log(this.carrito);
-    console.log(this.cliente)
+    this.carritoService.registrarReserva();
   }
 
 }

@@ -4,6 +4,7 @@ import { FooterComponent } from '../../../components/footer/footer.component';
 import { FormsModule } from '@angular/forms';
 import { CarritoService } from '../../../service/carrito.service';
 import { Router } from '@angular/router';
+import { validate, format, clean} from 'rut.js';
 
 @Component({
   selector: 'app-iniciar-sesion-usuario',

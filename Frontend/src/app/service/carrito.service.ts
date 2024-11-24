@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Service } from '../interface/interfaces';
 import { Client } from '../interface/interfaces';
+import { Reservation } from '../interface/interfaces';
+import axios from 'axios';
 
 @Injectable({
   providedIn: 'root'
@@ -89,5 +91,22 @@ export class CarritoService {
   clearCliente(): void {
     this.cliente = null;
     localStorage.removeItem(this.STORAGE_KEY_CLIENT);
+  }
+
+  async registrarReserva(): Promise<void> {
+    const reserva: Reservation = {
+      id: 0,
+      pago_total: 0,
+      fecha: "",
+      estado_pago: "a",
+      metodo_de_pago: "a",
+      idcliente: 0,
+      cantidad_personas: 0,
+      N_reserva: 0,
+    }
+    await axios.post('http://localhost:8000/reservas', reserva);
+
+    this.vaciarCarrito();
+    this.clearCliente();
   }
 }

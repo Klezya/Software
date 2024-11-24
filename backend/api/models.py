@@ -26,6 +26,8 @@ class Reserva(models.Model):
     estado_pago = models.CharField(max_length=20)
     metodo_de_pago = models.CharField(max_length=20)
     idcliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, db_column='idcliente')
+    cantidad_personas = models.IntegerField()
+    N_reserva = models.IntegerField()
 
 class Servicio_Reserva(models.Model):
     id = models.AutoField(primary_key=True)
