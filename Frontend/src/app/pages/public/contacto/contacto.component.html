@@ -15,7 +15,7 @@
       <div class="info-item">
         <i class="fa fa-phone"></i>
         <p>
-          <strong>Numero de Telefono</strong><br>
+          <strong>Numero de Teléfono</strong><br>
           +569 9586 4569<br>
           +569 9568 4513
         </p>
@@ -24,7 +24,7 @@
         <i class="fa fa-envelope"></i>
         <p>
           <strong>Dirección de Correo</strong><br>
-          acaad103&#64;gmail.com<br>
+          acaad103&#64;gmail.com
         </p>
       </div>
     </div>
@@ -33,27 +33,28 @@
       <h2>Formulario de Contacto</h2>
       <form>
         <div class="form-group">
-          <label>Nombre Completo</label>
-          <input type="text" class="form-control">
+          <label for="nombre">Nombre Completo</label>
+          <input type="text" id="nombre" class="form-control" placeholder="Ingresa tu nombre completo">
         </div>
         <div class="form-group">
-          <label>Tu Correo Electronico</label>
-          <input type="email" class="form-control">
+          <label for="email">Tu Correo Electrónico</label>
+          <input type="email" id="email" class="form-control" placeholder="Ingresa tu correo electrónico">
         </div>
         <div class="form-group">
-          <label>Razón</label>
-          <input type="text" class="form-control">
+          <label for="razon">Razón</label>
+          <input type="text" id="razon" class="form-control" placeholder="Razón del contacto">
         </div>
         <div class="form-group">
-          <label>Descripción</label>
-          <textarea class="form-control"></textarea>
+          <label for="descripcion">Descripción</label>
+          <textarea id="descripcion" class="form-control" placeholder="Escribe tu mensaje aquí"></textarea>
         </div>
-        <button type="submit" class="btn btn-submit">Enviar</button>
+        <button type="submit" class="btn-submit">Enviar</button>
       </form>
     </div>
   </div>  
 
-  <div id="map" style="height: 300px; width: 100%;"></div>
+  <!-- Mapa -->
+  <div id="map"></div>
 
   <app-footer></app-footer>
 </div>
