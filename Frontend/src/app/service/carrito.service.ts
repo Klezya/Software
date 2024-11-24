@@ -5,13 +5,15 @@ import { Service } from '../interface/interfaces';
   providedIn: 'root'
 })
 export class CarritoService {
-  private carrito: Service[] = [];
+  private carrito: { servicio: Service, cantidad_personas: number }[] = [];
   private readonly STORAGE_KEY = 'carrito';
 
   constructor() {
     this.cargarCarrito();
+    for (let item of this.carrito) {
+      item.servicio.precio = Number(item.servicio.precio);
+    }
   }
-
 
   private guardarCarrito(): void {
     localStorage.setItem(this.STORAGE_KEY, JSON.stringify(this.carrito));
@@ -24,29 +26,32 @@ export class CarritoService {
     }
   }
 
-  agregarAlCarrito(servicio: Service): void {
-    this.carrito.push(servicio);
+  agregarAlCarrito(servicio: Service, cantidad_personas: number): void {
+    this.carrito.push({ servicio, cantidad_personas });
     this.guardarCarrito();
   }
 
   eliminarDelCarrito(servicio: Service): void {
-    const index = this.carrito.indexOf(servicio);
+    const index = this.carrito.findIndex(item => item.servicio === servicio);
     if (index > -1) {
       this.carrito.splice(index, 1);
       this.guardarCarrito();
     }
   }
 
-  obtenerCarrito(): Service[] {
+  obtenerCarrito(): { servicio: Service, cantidad_personas: number }[] {
     return this.carrito;
   }
 
   calcularTotal(): number {
-
-    let total: number = 0;
-    for (let servicio of this.carrito) {
-      total += Number(servicio.precio);
+    let total = 0;
+    for (let item of this.carrito) {
+      if (item.servicio.tipo_servicio === 'Banquete') {
+        total += item.servicio.precio + item.servicio.precio*0.005*item.cantidad_personas;
+      } else {
+        total += item.servicio.precio
+      }
     }
-    return total
+    return total;
   }
 }

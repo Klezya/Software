@@ -55,16 +55,16 @@
           <!-- Descripción -->
           <p class="service-description">{{ seleccion.descripcion }}</p>
           <p>Menu: {{seleccion.menu}}</p>
-          <p>Infraestructura {{seleccion.infraestructura}}<p>
+          <p>Infraestructura: {{seleccion.infraestructura}}</p>
           <p>Tipo de Menu: {{seleccion.especialidad}}</p>
           <p>Cantidad: {{seleccion.capacidad}} platos</p>
           
-          <input id="input-plato-extra" type="number" min="0" [(ngModel)]="valor_adicional" [defaultValue]="0" (input)="asegurarValorAbsoluto()">
+          <input id="input-plato-extra" type="number" min="0" [(ngModel)]="cantidad_personas" [defaultValue]="0" (input)="asegurarValorAbsoluto()">
           <p>Precio por plato adicional: {{seleccion.precio * 0.005}}</p>
           <!-- Pie de la columna derecha -->
           <div class="details-footer">
             <!-- Precio -->
-            <span class="price">{{ seleccion.precio + valor_adicional*seleccion.precio*0.005 | currency }}</span>
+            <span class="price">{{ seleccion.precio + cantidad_personas*seleccion.precio*0.005 | currency }}</span>
             <!-- Botón con forma de carrito -->
             <button class="add-to-cart" (click)="addToCart(seleccion)">
               <i class="fa fa-shopping-cart"></i> Añadir al Carrito

@@ -13,7 +13,7 @@ import { CarritoService } from '../../../service/carrito.service';
   imports: [CommonModule, NavbarComponent, FooterComponent],
 })
 export class CarritoComponent implements OnInit {
-  carrito: Service[] = [];
+  carrito: {servicio: Service, cantidad_personas: number}[] = [];
 
   constructor(private carritoService: CarritoService) {}
 

@@ -20,7 +20,7 @@ export class BanqueteriaComponent {
   filtros: string[] = ['Todos','Buffet','Gourmet', 'Vegano'];
   filtro_seleccionado: string = 'Todos';
   seleccion: Service | null = null;
-  valor_adicional: number = 0;
+  cantidad_personas: number = 0;
 
   constructor(
     private databaseService: DatabaseService,
@@ -50,20 +50,16 @@ export class BanqueteriaComponent {
 
   closeModal() {
     this.seleccion = null;
-    console.log(this.valor_adicional);
   }
 
   addToCart(service: Service) {
-    this.carritoService.agregarAlCarrito(service);
+    this.carritoService.agregarAlCarrito(service, this.cantidad_personas);
     alert('Añadido al carrito: ' + service.titulo); // Mostrar alerta
     this.closeModal();
     console.log('Añadido al carrito:', service);
   }
 
   asegurarValorAbsoluto() {
-    // Convierte el valor a su valor absoluto
-    this.valor_adicional = Math.abs(this.valor_adicional);
+    this.cantidad_personas = Math.abs(this.cantidad_personas);
   }
-
-  
 }

@@ -2,15 +2,30 @@
   <app-navbar></app-navbar>
 
   <div class="carrito">
-    <h2>Productos y Servicios Seleccionados</h2>
+    <h2>Servicios Seleccionados</h2>
 
     <!-- Mostrar productos del carrito -->
     <div *ngIf="carrito.length > 0; else carritoVacio">
-      <div *ngFor="let producto of carrito" class="carrito-item">
-        <p>
-          {{ producto.titulo }} - {{ producto.precio | currency}}
-          <button (click)="eliminarDelCarrito(producto)">Eliminar</button>
-        </p>
+      <div *ngFor="let servicio of carrito" class="carrito-item">
+        <p><strong>{{ servicio.servicio.titulo }}</strong>  {{ servicio.servicio.precio | currency }}</p>
+        <p>{{ servicio.servicio.descripcion }}</p>
+        <div *ngIf="servicio.servicio.tipo_servicio === 'Salon'">
+          <p>Ubicación: {{ servicio.servicio.ubicacion }}</p>
+          <p>Infraestructura: {{ servicio.servicio.infraestructura }}</p>
+          <p>Especialidad: {{ servicio.servicio.especialidad }}</p>
+          <p>Capacidad: {{ servicio.servicio.capacidad }} personas</p>
+        </div>
+        <div *ngIf="servicio.servicio.tipo_servicio === 'Banquete'">
+          <p>Menú: {{ servicio.servicio.menu }}</p>
+          <p>Infraestructura: {{ servicio.servicio.infraestructura }}</p>
+          <p>Especialidad: {{ servicio.servicio.especialidad }}</p>
+          <p>Cantidad de platos adicionales: {{ servicio.cantidad_personas }}</p>
+        </div>
+        <div *ngIf="servicio.servicio.tipo_servicio === 'Evento'">
+          <p>Infraestructura: {{ servicio.servicio.infraestructura }}</p>
+          <p>Especialidad: {{ servicio.servicio.especialidad }}</p>
+        </div>
+        <button (click)="eliminarDelCarrito(servicio.servicio)">Eliminar</button>
       </div>
       <p><strong>Total: {{ calcularTotal() | currency }}</strong></p>
       <!-- Botón de pago -->
@@ -22,7 +37,6 @@
       <p>No hay Productos Seleccionados</p>
     </ng-template>
   </div>
-  
 
   <app-footer></app-footer>
 </div>
