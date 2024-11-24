@@ -1,17 +1,17 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { NavbarComponent } from '../../components/navbar/navbar.component';
-import { CommonModule, NgClass } from '@angular/common';
+import { NavbarComponent } from '../../../components/navbar/navbar.component';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-iniciar-sesion',
+  selector: 'app-iniciar-sesion-admin',
   templateUrl: './iniciar-sesion.component.html',
   styleUrls: ['./iniciar-sesion.component.css'],
   standalone: true,
-  imports: [NavbarComponent, CommonModule, NgClass, FormsModule]
+  imports: [NavbarComponent, CommonModule, FormsModule]
 })
-export class IniciarSesionComponent {
+export class IniciarSesionAdminComponent {
   username: string = '';
   password: string = '';
 

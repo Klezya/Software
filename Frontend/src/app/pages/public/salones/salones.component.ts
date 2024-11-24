@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NavbarComponent } from '../../components/navbar/navbar.component';
-import { FooterComponent } from '../../components/footer/footer.component';
-import { Service } from '../../interface/interfaces';
-import { DatabaseService } from '../../service/database.service';
+import { NavbarComponent } from '../../../components/navbar/navbar.component';
+import { FooterComponent } from '../../../components/footer/footer.component';
+import { Service } from '../../../interface/interfaces';
+import { DatabaseService } from '../../../service/database.service';
 
 @Component({
   selector: 'app-salones',
@@ -16,6 +16,7 @@ export class SalonesComponent implements OnInit {
   salones: Service[] = [];
   salones_filtrados: Service[] = [];
   filtros: string[] = ['Todos','Grande', 'Mediano', 'Mediano Junior'];
+  filtro_seleccionado: string = 'Todos';
   capacidades: Map<string, number> = new Map();
 
   constructor(
@@ -28,6 +29,7 @@ export class SalonesComponent implements OnInit {
   }
 
   applyFilter(capacidad: string) {
+    this.filtro_seleccionado = capacidad;
     if (capacidad === 'Todos') {
       this.salones_filtrados = this.salones;
     } else {

@@ -11,6 +11,7 @@ class Servicio(models.Model):
     capacidad = models.IntegerField()
     infraestructura = models.CharField(max_length=500)
     img = models.CharField(max_length=500)
+    especialidad = models.CharField(max_length=50)
 
 class Cliente(models.Model):
     idcliente = models.AutoField(primary_key=True)

@@ -4,7 +4,10 @@
   <aside class="sidebar">
     <h3>Filtros</h3>
     <ul>
-      <li *ngFor="let filtro of filtros" (click)="applyFilter(filtro)">
+      <li *ngFor="let filtro of filtros" 
+      (click)="applyFilter(filtro)"
+      [class.selected]="filtro === filtro_seleccionado"
+      >
         {{ filtro }}
       </li>
     </ul>
@@ -19,7 +22,7 @@
         >
         <!-- Imagen en la izquierda -->
         <div class="card-image">
-          <!--img [src]="salon.img" alt="{{ salon.titulo }}" /-->
+          <img [src]="salon.img" alt="{{ salon.titulo }}" />
         </div>
         <!-- Contenido a la derecha -->
         <div class="card-content">

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ReservasService } from '../servicios_Usuarioreserva/reservas.service';
-import { FooterComponent } from '../../components/footer/footer.component';
-import { NavbarComponent } from '../../components/navbar/navbar.component';
+import { FooterComponent } from '../../../components/footer/footer.component';
+import { NavbarComponent } from '../../../components/navbar/navbar.component';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http'; // Importa HttpClientModule
 
@@ -15,11 +14,8 @@ import { HttpClientModule } from '@angular/common/http'; // Importa HttpClientMo
 export class BuscarReservaComponent implements OnInit {
   reservas: any[] = [];
 
-  constructor(private reservasService: ReservasService) {}
+  constructor() {}
 
   ngOnInit(): void {
-    this.reservasService.obtenerReservas().subscribe((data) => {
-      this.reservas = data;
-    });
   }
 }
