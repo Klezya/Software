@@ -33,3 +33,9 @@ def buscar_cliente_por_rut(request, rut):
     cliente = get_object_or_404(Cliente, rut=rut)
     serializer = ClienteSerializer(cliente)
     return Response(serializer.data, status=status.HTTP_200_OK)
+
+@api_view(['GET'])
+def reservas_por_cliente(request, idcliente):
+    reservas = Reserva.objects.filter(idcliente=idcliente)
+    serializer = ReservaSerializer(reservas, many=True)
+    return Response(serializer.data, status=status.HTTP_200_OK)

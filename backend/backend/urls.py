@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from api.views import ServicioViewSet, ClienteViewSet, ReservaViewSet, PersonalViewSet, buscar_cliente_por_rut
+from api.views import ServicioViewSet, ClienteViewSet, ReservaViewSet, PersonalViewSet, buscar_cliente_por_rut, reservas_por_cliente
 
 router = DefaultRouter()
 router.register(r'servicios', ServicioViewSet)
@@ -29,4 +29,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
     path('api/clientes/buscar/<str:rut>/', buscar_cliente_por_rut, name='buscar_cliente_por_rut'),
+    path('api/reservas/cliente/<int:idcliente>/', reservas_por_cliente, name='reservas_por_cliente'),
 ]

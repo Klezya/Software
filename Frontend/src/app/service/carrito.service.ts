@@ -109,6 +109,8 @@ export class CarritoService {
       console.log(reserva);
       await this.postReserva(reserva);
     }
+    this.clearCliente();
+    this.vaciarCarrito();
   }
 
   crearReserva(item: {servicio: Service, cantidad_personas: number}, metodo_de_pago_seleccionado: string): Reservation {

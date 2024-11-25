@@ -66,9 +66,19 @@ export class DatabaseService {
     }
   }
 
+  async getServicio(idservicio: number): Promise<Service> {
+    try {
+      const response = await axios.get(`${this.BASE_URL}/api/servicios/${idservicio}`);
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching data', error);
+      throw error;
+    }
+  }
+
   async getReservas(idcliente: number): Promise<any> {
     try {
-      const response = await axios.get(`${this.BASE_URL}/api/reservas/${idcliente}`);
+      const response = await axios.get(`${this.BASE_URL}/api/reservas/cliente/${idcliente}`);
       return response.data;
     } catch (error) {
       console.error('Error fetching data', error);

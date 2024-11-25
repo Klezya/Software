@@ -1,12 +1,38 @@
-<app-navbar></app-navbar>
-<p><div class="reservas-container">
-    <h2>Tus Reservas</h2>
-    <ul>
-      <li *ngFor="let reserva of reservas">
-        <h3>{{ reserva.servicio }}</h3>
-        <p>Fecha: {{ reserva.fecha }}</p>
-        <p>Estado: {{ reserva.estado }}</p>
-      </li>
-    </ul>
+<div class="contenedor-principal">
+  <app-navbar></app-navbar>
+
+  <div class="form-container">
+    <!-- Mostrar imagen y formulario si reservas está vacío -->
+    <div *ngIf="reservas.length === 0">
+
+      <!-- Columna derecha: Formulario -->
+      <div class="form-content">
+        <h2>Busqueda de reservas por RUT</h2>
+        <form (ngSubmit)="onSubmit()">
+          <label for="rut">RUT:</label>
+          <input type="text" id="rut" [(ngModel)]="rut" name="rut" required>
+          <button type="submit" [disabled]="isLoading" [class.loading]="isLoading">
+            <span *ngIf="!isLoading">Buscar</span>
+            <span *ngIf="isLoading">Buscando...</span>
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Mostrar reservas si hay elementos en reservas -->
+    <div *ngIf="reservas.length > 0" class="reservas-container">
+      <h2>Tus Reservas</h2>
+      <ul>
+        <li *ngFor="let reserva of reservas">
+          <h3>{{ reserva.servicio.titulo }}</h3>
+          <p>Fecha: {{ reserva.fecha }}</p>
+          <p>Estado de pago: {{ reserva.estado_pago }}</p>
+          <p *ngIf="reserva.servicio.tipo_servicio=='Banquete'">Cantidad de Personas: {{reserva.cantidad_personas}} </p>
+          <img src="{{reserva.servicio.img}}" alt="Imagen de servicio">
+        </li>
+      </ul>
+    </div>
   </div>
-<app-footer></app-footer>
+
+  <app-footer></app-footer>
+</div>
