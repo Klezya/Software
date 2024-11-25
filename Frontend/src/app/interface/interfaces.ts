@@ -30,3 +30,8 @@ export interface Reservation {
     idservicio: number;
 }
 
+export interface Personal {
+    usuario: string;
+    password: string;
+}
+

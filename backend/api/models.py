@@ -7,8 +7,8 @@ class Servicio(models.Model):
     precio = models.DecimalField(max_digits=16, decimal_places=2)
     ubicacion = models.CharField(max_length=50)
     tipo_servicio = models.CharField(max_length=10)
-    menu = models.CharField(max_length=500)
-    capacidad = models.IntegerField()
+    menu = models.CharField(max_length=500, blank=True, null=True)
+    capacidad = models.IntegerField(blank=True, null=True)
     infraestructura = models.CharField(max_length=500)
     img = models.CharField(max_length=500)
     especialidad = models.CharField(max_length=50)
@@ -32,8 +32,9 @@ class Reserva(models.Model):
 
 class Personal(models.Model):
     idadmin = models.AutoField(primary_key=True)
-    usuario = models.CharField(max_length=30)
-    correo = models.CharField(max_length=60)
-    permisos = models.CharField(max_length=50)
-    contraseña = models.CharField(max_length=80)
+    usuario = models.CharField(max_length=30, unique=True)
+    correo = models.EmailField(max_length=60, unique=True)
+    nombre = models.CharField(max_length=30)
+    apellido = models.CharField(max_length=30)
+    password = models.CharField(max_length=60)
 
