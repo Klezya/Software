@@ -17,6 +17,7 @@
           {{ servicio.titulo }} - {{ servicio.tipo_servicio }} - {{ servicio.precio | currency }}
         </li>
       </ul>
+      <button class="btn-download" (click)="descargarReporte(reporte)">Descargar Reporte</button>
     </div>
   </div>
   <ng-template #noReportes>
