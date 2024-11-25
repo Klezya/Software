@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Servicio, Cliente, Reserva, Servicio_Reserva, Personal
+from .models import Servicio, Cliente, Reserva, Personal
 
 class ServicioSerializer(serializers.ModelSerializer):
     class Meta:
@@ -14,11 +14,6 @@ class ClienteSerializer(serializers.ModelSerializer):
 class ReservaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Reserva
-        fields = '__all__'
-
-class ServicioReservaSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Servicio_Reserva
         fields = '__all__'
 
 class PersonalSerializer(serializers.ModelSerializer):

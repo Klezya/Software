@@ -1,0 +1,60 @@
+<div class="contenedor-principal">
+  <app-navbar></app-navbar>
+
+  <div class="contact-container">
+    <div class="contact-info">
+      <h3>Información de Contacto</h3>
+      <div class="info-item">
+        <i class="fa fa-map-marker"></i>
+        <p>
+          <strong>Nuestra Dirección</strong><br>
+          Quillora 980<br>
+          Viña del Mar, Chile
+        </p>
+      </div>
+      <div class="info-item">
+        <i class="fa fa-phone"></i>
+        <p>
+          <strong>Numero de Teléfono</strong><br>
+          +569 9586 4569<br>
+          +569 9568 4513
+        </p>
+      </div>
+      <div class="info-item">
+        <i class="fa fa-envelope"></i>
+        <p>
+          <strong>Dirección de Correo</strong><br>
+          acaad103&#64;gmail.com
+        </p>
+      </div>
+    </div>
+
+    <div class="contact-form">
+      <h2>Formulario de Contacto</h2>
+      <form>
+        <div class="form-group">
+          <label for="nombre">Nombre Completo</label>
+          <input type="text" id="nombre" class="form-control" placeholder="Ingresa tu nombre completo">
+        </div>
+        <div class="form-group">
+          <label for="email">Tu Correo Electrónico</label>
+          <input type="email" id="email" class="form-control" placeholder="Ingresa tu correo electrónico">
+        </div>
+        <div class="form-group">
+          <label for="razon">Razón</label>
+          <input type="text" id="razon" class="form-control" placeholder="Razón del contacto">
+        </div>
+        <div class="form-group">
+          <label for="descripcion">Descripción</label>
+          <textarea id="descripcion" class="form-control" placeholder="Escribe tu mensaje aquí"></textarea>
+        </div>
+        <button type="submit" class="btn-submit">Enviar</button>
+      </form>
+    </div>
+  </div>  
+
+  <!-- Mapa -->
+  <div id="map"></div>
+
+  <app-footer></app-footer>
+</div>

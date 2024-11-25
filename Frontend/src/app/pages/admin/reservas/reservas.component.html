@@ -1,0 +1,30 @@
+<app-navbar></app-navbar>
+<div class="dashboard-container">
+  <h2 class="dashboard-title">Reservas</h2>
+  <div *ngIf="reservas.length > 0">
+    <div *ngFor="let reserva of reservas" class="carrito-item">
+      <!-- Información del servicio -->
+      <div class="item-info">
+        <h3>Detalles de la reserva</h3>
+        <p>Fecha Reservada: {{reserva.detalle_reserva.fecha}}</p>
+        <p>Estado del pago: {{reserva.detalle_reserva.estado_pago}}</p>
+        <p>Metodo de pago: {{reserva.detalle_reserva.metodo_de_pago}}</p>
+        <p>Valor total: {{reserva.detalle_reserva.pago_total}}</p>
+
+        <p><strong>Servicio:</strong></p>
+        <p>Titulo: {{reserva.servicio.titulo}}</p>
+        <p>Tipo de servicio: {{reserva.servicio.tipo_servicio}}</p>
+        <p *ngIf="reserva.detalle_reserva.cantidad_personas > 0">Personas Extra: {{reserva.detalle_reserva.cantidad_personas}}</p>
+
+        <p><strong>Cliente:</strong></p>
+        <p>Nombre: {{reserva.cliente.nombre}} {{reserva.cliente.apellido}}</p>
+        <p>Rut: {{reserva.cliente.rut}}</p>
+        <p>Correo: {{reserva.cliente.correo}}</p>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="reservas.length === 0">
+    <p>No hay reservas disponibles.</p>
+  </div>
+</div>
+<app-footer></app-footer>

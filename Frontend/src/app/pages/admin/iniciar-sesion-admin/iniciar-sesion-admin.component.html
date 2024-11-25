@@ -1,0 +1,22 @@
+<div class="contenedor-principal">
+    <app-navbar></app-navbar>
+  
+    <div class="form-container">
+  
+      <!-- Columna derecha: Formulario -->
+      <div class="form-content">
+        <h2>Inicio Personal</h2>
+        <form (ngSubmit)="onSubmit()">
+          <label for="nombre">Usuario: </label>
+          <input type="text" id="nombre" [(ngModel)]="personal.usuario" name="nombre" required>
+  
+          <label for="apellido">Contraseña: </label>
+          <input type="password" id="apellido" [(ngModel)]="personal.password" name="apellido" required>
+  
+          <button type="submit">Acceder</button>
+        </form>
+      </div>
+    </div>
+  
+    <app-footer></app-footer>
+  </div>

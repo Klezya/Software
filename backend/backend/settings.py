@@ -25,9 +25,10 @@ SECRET_KEY = 'django-insecure-*96ju8z@cqvmp+rx)z(3(q2=tpf252&@rcfj%l_t97xaykj6lj
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
-
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+]
 # Application definition
 
 INSTALLED_APPS = [
@@ -52,6 +53,9 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+CORS_ORIGIN_ALLOW_ALL = True
+
 
 ROOT_URLCONF = 'backend.urls'
 
@@ -129,3 +133,14 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# Email settings
+# Configuración SMTP para Gmail
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = "noreply.comprobanteapidjango@gmail.com"  # Cambia esto a tu dirección de Gmail
+EMAIL_HOST_PASSWORD = "tatl fujc iegs amre"  # Cambia a tu contraseña o App Password si tienes 2FA activado
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER  # El remitente de los correos

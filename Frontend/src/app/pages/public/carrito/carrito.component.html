@@ -1,0 +1,71 @@
+<div class="contenedor-principal">
+  <app-navbar></app-navbar>
+
+  <div class="carrito-container">
+    <!-- Columna izquierda: Carrito -->
+    <div class="carrito">
+      <h2>Servicios Seleccionados</h2>
+
+      <!-- Mostrar productos del carrito -->
+      <div *ngIf="carrito.length > 0; else carritoVacio">
+        <div *ngFor="let servicio of carrito" class="carrito-item">
+          <!-- Información del servicio -->
+          <div class="item-info">
+            <h3>{{ servicio.servicio.titulo }}</h3>
+            <p class="price">{{ servicio.servicio.precio | currency }}</p>
+            <p class="description">{{ servicio.servicio.descripcion }}</p>
+            <p class="date">{{servicio.servicio.fecha}}</p>
+
+            <!-- Detalles específicos por tipo de servicio -->
+            <div *ngIf="servicio.servicio.tipo_servicio === 'Salon'" class="details">
+              <p><strong>Ubicación:</strong> {{ servicio.servicio.ubicacion }}</p>
+              <p><strong>Infraestructura:</strong> {{ servicio.servicio.infraestructura }}</p>
+              <p><strong>Especialidad:</strong> {{ servicio.servicio.especialidad }}</p>
+              <p><strong>Capacidad:</strong> {{ servicio.servicio.capacidad }} personas</p>
+            </div>
+            <div *ngIf="servicio.servicio.tipo_servicio === 'Banquete'" class="details">
+              <p><strong>Menú:</strong> {{ servicio.servicio.menu }}</p>
+              <p><strong>Infraestructura:</strong> {{ servicio.servicio.infraestructura }}</p>
+              <p><strong>Especialidad:</strong> {{ servicio.servicio.especialidad }}</p>
+              <div *ngIf="servicio.cantidad_personas > 0">
+                <p><strong>Platos adicionales:</strong> {{ servicio.cantidad_personas }}</p>
+                <p>
+                  <strong>Cobro adicional:</strong>
+                  {{ servicio.servicio.precio * 0.005 * servicio.cantidad_personas | currency }}
+                </p>
+              </div>
+            </div>
+            <div *ngIf="servicio.servicio.tipo_servicio === 'Evento'" class="details">
+              <p><strong>Infraestructura:</strong> {{ servicio.servicio.infraestructura }}</p>
+              <p><strong>Especialidad:</strong> {{ servicio.servicio.especialidad }}</p>
+            </div>
+          </div>
+
+          <!-- Botón de eliminar -->
+          <button class="btn-eliminar" (click)="eliminarDelCarrito(servicio.servicio)">Eliminar</button>
+        </div>
+
+        <!-- Total y botón de pago -->
+        <div class="summary">
+          <p><strong>Total:</strong> {{ calcularTotal() | currency }}</p>
+          <button class="btn-pagar" (click)="pagar()">Pagar</button>
+          <p class="payment-info">A la hora de pagar se le pedirá el 50% del monto total como abono.</p>
+        </div>
+      </div>
+
+      <!-- Mensaje si el carrito está vacío -->
+      <ng-template #carritoVacio>
+        <div class="empty-cart">
+          <p>No hay productos seleccionados.</p>
+        </div>
+      </ng-template>
+    </div>
+
+    <!-- Columna derecha: Imagen fija -->
+    <div class="imagen-fija">
+      <img src="https://img.freepik.com/foto-gratis/camarero-sosteniendo-plato-berenjenas-fritas-nueces_140725-5250.jpg?uid=R135651730&semt=ais_hybrid" alt="Imagen del carrito">
+    </div>
+  </div>
+
+  <app-footer></app-footer>
+</div>

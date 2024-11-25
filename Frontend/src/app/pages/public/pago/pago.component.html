@@ -1,0 +1,52 @@
+<div class="contenedor-principal">
+    <app-navbar></app-navbar>
+  
+    <div class="carrito">
+      <h2>Servicios Seleccionados</h2>
+  
+      <!-- Mostrar productos del carrito -->
+      <div *ngIf="carrito.length > 0; else carritoVacio">
+        <div *ngFor="let servicio of carrito" class="carrito-item">
+          <p><strong>{{ servicio.servicio.titulo }}</strong>  {{ servicio.servicio.precio | currency }}</p>
+          <p>{{ servicio.servicio.descripcion }}</p>
+          <div *ngIf="servicio.servicio.tipo_servicio === 'Salon'">
+            <p>Ubicación: {{ servicio.servicio.ubicacion }}</p>
+            <p>Infraestructura: {{ servicio.servicio.infraestructura }}</p>
+            <p>Especialidad: {{ servicio.servicio.especialidad }}</p>
+            <p>Capacidad: {{ servicio.servicio.capacidad }} personas</p>
+          </div>
+          <div *ngIf="servicio.servicio.tipo_servicio === 'Banquete'">
+            <p>Menú: {{ servicio.servicio.menu }}</p>
+            <p>Infraestructura: {{ servicio.servicio.infraestructura }}</p>
+            <p>Especialidad: {{ servicio.servicio.especialidad }}</p>
+            <div *ngIf="servicio.cantidad_personas > 0">
+                <p>Cantidad de platos adicionales: {{ servicio.cantidad_personas }}</p>
+                <p>Cobro adicional por platos: {{servicio.servicio.precio*0.005*servicio.cantidad_personas| currency}}</p>
+            </div>
+          </div>
+          <div *ngIf="servicio.servicio.tipo_servicio === 'Evento'">
+            <p>Infraestructura: {{ servicio.servicio.infraestructura }}</p>
+            <p>Especialidad: {{ servicio.servicio.especialidad }}</p>
+          </div>
+        </div>
+        <p><strong>Total: {{ calcularTotal() | currency }}</strong></p>
+        <p><strong>Total a abonar (50%): {{ calcularTotal()/2 | currency }}</strong></p>
+        
+        <!-- Input desplegable para métodos de pago -->
+        <label for="metodoPago">Método de Pago:</label>
+        <select id="metodoPago" [(ngModel)]="metodo_seleccionado">
+          <option *ngFor="let metodo of metodos_de_pago" [value]="metodo">{{ metodo }}</option>
+        </select>
+        
+        <!-- Botón de pago -->
+        <button class="btn-pagar" (click)="pagar()">Confirmar Pago 50%</button>
+      </div>
+  
+      <!-- Mensaje si el carrito está vacío -->
+      <ng-template #carritoVacio>
+        <p>No hay Productos Seleccionados</p>
+      </ng-template>
+    </div>
+  
+    <app-footer></app-footer>
+  </div>
