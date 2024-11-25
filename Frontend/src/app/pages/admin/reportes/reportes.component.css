@@ -58,3 +58,59 @@ tbody tr:nth-child(odd) {
 .btn-download:hover {
     background-color: #0056b3;
 }
+
+.reporte-item {
+  margin: 20px auto;
+  max-width: 800px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.reporte-item h3 {
+  margin-bottom: 10px;
+  color: #007BFF;
+}
+
+.reporte-item p {
+  margin: 5px 0;
+}
+
+.reporte-item h4 {
+  margin-top: 15px;
+  cursor: pointer;
+  color: #007BFF;
+}
+
+.reporte-item ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 10px 0 0 0;
+}
+
+.reporte-item ul li {
+  background-color: #f9f9f9;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.reporte-item ul li:hover {
+  background-color: #e9e9e9;
+}
+
+@media (max-width: 768px) {
+  .reporte-item {
+    padding: 15px;
+  }
+
+  .reporte-item h3 {
+    font-size: 24px;
+  }
+
+  .reporte-item p, .reporte-item ul li {
+    font-size: 14px;
+  }
+}

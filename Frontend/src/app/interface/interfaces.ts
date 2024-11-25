@@ -35,3 +35,13 @@ export interface Personal {
     password: string;
 }
 
+export interface Reporte {
+    mes_ano: string;
+    total_recaudado: number;
+    cantidad_salones: number;
+    cantidad_banquetes: number;
+    cantidad_eventos: number;
+    cantidad_reservas: number;
+    servicios: Service[]; 
+}
+
