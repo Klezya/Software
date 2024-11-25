@@ -20,7 +20,6 @@ export interface Client {
 }
 
 export interface Reservation {
-    id: number;
     pago_total: number;
     fecha: string;
     estado_pago: string;

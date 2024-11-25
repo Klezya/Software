@@ -15,15 +15,15 @@ import { Router } from '@angular/router';
 })
 export class PagoComponent implements OnInit {
   carrito: {servicio: Service, cantidad_personas: number}[] = [];
-  cliente: Client | null = null;
+  idcliente: number = 0;
 
   constructor(private carritoService: CarritoService, private router: Router) { }
 
   ngOnInit() {
     this.carrito = this.carritoService.obtenerCarrito();
     console.log(this.carrito);
-    this.cliente = this.carritoService.getCliente();
-    console.log(this.cliente);
+    this.idcliente = this.carritoService.getIdCliente();
+    console.log(this.idcliente);
   }
 
   calcularTotal(): number {

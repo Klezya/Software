@@ -10,7 +10,7 @@ import axios from 'axios';
 export class CarritoService {
   private carrito: { servicio: Service, cantidad_personas: number }[] = [];
   private readonly STORAGE_KEY = 'carrito';
-  private cliente: Client | null = null;
+  private idcliente: number = 0;
   private readonly STORAGE_KEY_CLIENT = 'cliente';
 
   constructor() {
@@ -34,15 +34,15 @@ export class CarritoService {
   }
 
   private guardarCliente(): void {
-    if (this.cliente) {
-      localStorage.setItem(this.STORAGE_KEY_CLIENT, JSON.stringify(this.cliente));
+    if (this.idcliente) {
+      localStorage.setItem(this.STORAGE_KEY_CLIENT, JSON.stringify(this.idcliente));
     }
   }
 
   private cargarCliente(): void {
     const clienteGuardado = localStorage.getItem(this.STORAGE_KEY_CLIENT);
     if (clienteGuardado) {
-      this.cliente = JSON.parse(clienteGuardado);
+      this.idcliente = JSON.parse(clienteGuardado);
     }
   }
 
@@ -80,23 +80,22 @@ export class CarritoService {
     return total;
   }
   
-  getCliente(): Client | null {
-    return this.cliente;
+  getIdCliente(): number {
+    return this.idcliente;
   }
 
-  setCliente(cliente: Client): void {
-    this.cliente = cliente;
+  setIdCliente(idcliente: number): void {
+    this.idcliente = idcliente;
     this.guardarCliente();
   }
 
   clearCliente(): void {
-    this.cliente = null;
+    this.idcliente = 0;
     localStorage.removeItem(this.STORAGE_KEY_CLIENT);
   }
 
   async registrarReserva(): Promise<void> {
     const reserva: Reservation = {
-      id: 12,
       pago_total: 1000,
       fecha: "2024-12-12",
       estado_pago: "Abonado",

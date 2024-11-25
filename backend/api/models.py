@@ -15,8 +15,9 @@ class Servicio(models.Model):
 
 class Cliente(models.Model):
     idcliente = models.AutoField(primary_key=True)
-    rut = models.IntegerField()
+    rut = models.CharField(max_length=16)
     nombre = models.CharField(max_length=30)
+    apellido = models.CharField(max_length=30)
     correo = models.CharField(max_length=60)
 
 class Reserva(models.Model):

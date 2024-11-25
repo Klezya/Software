@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import axios from 'axios';
 import { Service } from '../interface/interfaces';
+import { format } from 'rut.js';
 
 @Injectable({
   providedIn: 'root'
@@ -44,4 +45,24 @@ export class DatabaseService {
     }
   }
 
+  async postCliente(cliente: any): Promise<number> {
+    try {
+      const response = await axios.post(`${this.BASE_URL}/api/clientes/`, cliente);
+      return response.data.id;
+    } catch (error) {
+      console.error('Error fetching data', error);
+      throw error;
+    }
+  }
+
+  async getCliente(rut: string): Promise<any> {
+    try {
+      rut = format(rut);
+      const response = await axios.get(`${this.BASE_URL}/api/clientes/buscar/${rut}/`);
+      return response.data;
+    } catch (error) {
+      //console.error('Error fetching data', error);
+      throw error;
+    }
+  }
 }
