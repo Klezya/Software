@@ -12,6 +12,8 @@ import { IniciarSesionAdminComponent } from './pages/admin/iniciar-sesion-admin/
 import { IniciarSesionUsuarioComponent } from './pages/user/iniciar-sesion-usuario/iniciar-sesion-usuario.component';
 import { PagoComponent } from './pages/public/pago/pago.component';
 import { DashboardComponent } from './pages/admin/dashboard/dashboard.component';
+import { ReservasComponent } from './pages/admin/reservas/reservas.component';
+import { ReportesComponent } from './pages/admin/reportes/reportes.component';
 
 
 export const routes: Routes = [
@@ -24,6 +26,8 @@ export const routes: Routes = [
   { path: 'carrito', component: CarritoComponent },
   { path: 'admin/iniciar-sesion-admin', component: IniciarSesionAdminComponent },
   { path: 'admin/dashboard', component: DashboardComponent },
+  { path: 'admin/reservas', component: ReservasComponent },
+  { path: 'admin/reportes', component: ReportesComponent },
   { path: 'iniciar-sesion-usuario', component: IniciarSesionUsuarioComponent },
   { path: 'pago', component: PagoComponent },
   { path: '**', redirectTo: '' }  // Redirigir a Home si la ruta no existe

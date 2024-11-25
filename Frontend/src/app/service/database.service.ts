@@ -55,7 +55,7 @@ export class DatabaseService {
     }
   }
 
-  async getCliente(rut: string): Promise<any> {
+  async getClienteRut(rut: string): Promise<any> {
     try {
       rut = format(rut);
       const response = await axios.get(`${this.BASE_URL}/api/clientes/buscar/${rut}/`);
@@ -65,6 +65,16 @@ export class DatabaseService {
       throw error;
     }
   }
+  async getClienteId(id: number): Promise<any> {
+    try {
+      const response = await axios.get(`${this.BASE_URL}/api/clientes/${id}`);
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching data', error);
+      throw error;
+    }
+  }
+  
 
   async getServicio(idservicio: number): Promise<Service> {
     try {
@@ -76,9 +86,20 @@ export class DatabaseService {
     }
   }
 
-  async getReservas(idcliente: number): Promise<any> {
+  async getReservasCliente(idcliente: number): Promise<any> {
     try {
       const response = await axios.get(`${this.BASE_URL}/api/reservas/cliente/${idcliente}`);
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching data', error);
+      throw error;
+    }
+  }
+
+  async getReservas(): Promise<Reservation[]> {
+    try {
+      const response = await axios.get(`${this.BASE_URL}/api/reservas/`);
+      console.log(response.data);
       return response.data;
     } catch (error) {
       console.error('Error fetching data', error);
@@ -101,8 +122,7 @@ export class DatabaseService {
       const response = await axios.get(`${this.BASE_URL}/api/personal/`);
       response.data.forEach((personal: Personal) => {
         if (personal.usuario === credenciales.usuario && personal.password === credenciales.password) {
-          console.log('Usuario encontrado');
-          console.log(personal);
+          console.log('Usuario encontrado:',personal);
         }
       });
     } catch (error) {

@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NavbarComponent } from '../../../components/navbar/navbar.component';
 import { FooterComponent } from '../../../components/footer/footer.component';
 import { FormsModule } from '@angular/forms';
-import { Personal } from '../../../interface/interfaces';
 import { DatabaseService } from '../../../service/database.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-iniciar-sesion-admin',
@@ -19,7 +19,8 @@ export class IniciarSesionAdminComponent implements OnInit {
   }
 
   constructor(
-    private databaseService: DatabaseService
+    private databaseService: DatabaseService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -28,6 +29,7 @@ export class IniciarSesionAdminComponent implements OnInit {
   async onSubmit(){
     try {
       await this.databaseService.loginPersonal(this.personal);
+      this.router.navigate(['/admin/dashboard']);
     } catch (error) {
       console.error('Error logging in', error);
     }

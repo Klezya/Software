@@ -30,9 +30,9 @@ export class BuscarReservaComponent implements OnInit {
   async onSubmit() {
     this.isLoading = true;
     try {
-      const response = await this.databaseService.getCliente(format(this.rut));
+      const response = await this.databaseService.getClienteRut(format(this.rut));
       const idcliente = response.idcliente;
-      const reservas = await this.databaseService.getReservas(idcliente);
+      const reservas = await this.databaseService.getReservasCliente(idcliente);
 
       this.reservas = await Promise.all(reservas.map(async (reserva: Reservation) => {
         const servicio = await this.databaseService.getServicio(reserva.idservicio);

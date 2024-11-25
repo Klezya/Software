@@ -36,7 +36,7 @@ export class IniciarSesionUsuarioComponent {
       correo: this.correo
     }
     try {
-      await this.database.getCliente(cliente.rut).then((response) => {
+      await this.database.getClienteRut(cliente.rut).then((response) => {
         console.log(response.idcliente)
         this.carrito.setIdCliente(response.idcliente);
       })
