@@ -1,5 +1,5 @@
 export interface Service {
-    id: number;
+    idservicio: number;
     titulo: string;
     descripcion: string;
     precio: number;
@@ -10,6 +10,7 @@ export interface Service {
     infraestructura: string;
     img: string;
     especialidad: string;
+    fecha: string;
 }
 
 export interface Client {
@@ -29,7 +30,3 @@ export interface Reservation {
     idservicio: number;
 }
 
-export interface Adicional {
-    cantidad_personas: number;
-    valor_adicional: number;
-}

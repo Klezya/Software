@@ -5,13 +5,14 @@ import { FooterComponent } from '../../../components/footer/footer.component';
 import { Service } from '../../../interface/interfaces';
 import { DatabaseService } from '../../../service/database.service';
 import { CarritoService } from '../../../service/carrito.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-salones',
   templateUrl: './salones.component.html',
   styleUrls: ['./salones.component.scss'],
   standalone: true,
-  imports: [CommonModule, NavbarComponent, FooterComponent],
+  imports: [CommonModule, NavbarComponent, FooterComponent, FormsModule],
 })
 export class SalonesComponent implements OnInit {
   salones: Service[] = [];
@@ -19,6 +20,7 @@ export class SalonesComponent implements OnInit {
   filtros: string[] = ['Todos', 'Grande', 'Mediano', 'Mediano Junior'];
   filtro_seleccionado: string = 'Todos';
   seleccion: Service | null = null;
+  fecha_reserva: string = '';
 
   constructor(
     private databaseService: DatabaseService,
@@ -28,6 +30,7 @@ export class SalonesComponent implements OnInit {
   async ngOnInit() {
     this.salones = await this.databaseService.getSalones();
     this.salones_filtrados = this.salones;
+    console.log(this.salones);
   }
 
   applyFilter(especialidad: string) {
@@ -48,9 +51,11 @@ export class SalonesComponent implements OnInit {
   }
 
   addToCart(service: Service) {
+    service.fecha = this.fecha_reserva;
     this.carritoService.agregarAlCarrito(service, 0);
     alert('Añadido al carrito: ' + service.titulo); // Mostrar alerta
     this.closeModal();
+    this.fecha_reserva = '';
     console.log('Añadido al carrito:', service);
   }
 }

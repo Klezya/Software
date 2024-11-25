@@ -20,7 +20,9 @@ export class CarritoComponent implements OnInit {
 
   ngOnInit() {
     this.carrito = this.carritoService.obtenerCarrito();
-    console.log(this.carrito);
+    for (let item of this.carrito)  {
+      item.servicio.precio = Number(item.servicio.precio)
+    }
   }
 
   eliminarDelCarrito(servicio: Service) {

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import axios from 'axios';
-import { Service } from '../interface/interfaces';
+import { Reservation, Service } from '../interface/interfaces';
 import { format } from 'rut.js';
 
 @Injectable({
@@ -62,6 +62,26 @@ export class DatabaseService {
       return response.data;
     } catch (error) {
       //console.error('Error fetching data', error);
+      throw error;
+    }
+  }
+
+  async getReservas(idcliente: number): Promise<any> {
+    try {
+      const response = await axios.get(`${this.BASE_URL}/api/reservas/${idcliente}`);
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching data', error);
+      throw error;
+    }
+  }
+
+  async postReserva(reserva: Reservation): Promise<any> {
+    try {
+      const response = await axios.post(`${this.BASE_URL}/api/reservas/`, reserva);
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching data', error);
       throw error;
     }
   }

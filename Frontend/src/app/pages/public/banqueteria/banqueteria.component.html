@@ -59,6 +59,10 @@
           
           <input id="input-plato-extra" type="number" min="0" [(ngModel)]="cantidad_personas" [defaultValue]="0" (input)="asegurarValorAbsoluto()">
           <p>Precio por plato adicional: {{seleccion.precio * 0.005}}</p>
+
+          <label for="fechaReserva">Fecha de Reserva:</label>
+          <input type="date" id="fechaReserva" [(ngModel)]="fecha_reserva">
+
           <!-- Pie de la columna derecha -->
           <div class="details-footer">
             <!-- Precio -->

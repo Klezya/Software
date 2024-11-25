@@ -14,6 +14,7 @@
             <h3>{{ servicio.servicio.titulo }}</h3>
             <p class="price">{{ servicio.servicio.precio | currency }}</p>
             <p class="description">{{ servicio.servicio.descripcion }}</p>
+            <p class="date">{{servicio.servicio.fecha}}</p>
 
             <!-- Detalles específicos por tipo de servicio -->
             <div *ngIf="servicio.servicio.tipo_servicio === 'Salon'" class="details">

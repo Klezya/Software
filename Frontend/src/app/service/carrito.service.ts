@@ -15,10 +15,6 @@ export class CarritoService {
 
   constructor() {
     this.cargarCarrito();
-    for (let item of this.carrito) {
-      item.servicio.precio = Number(item.servicio.precio);
-      item.cantidad_personas = Number(item.cantidad_personas);
-    }
     this.cargarCliente();
   }
 
@@ -43,6 +39,10 @@ export class CarritoService {
     const clienteGuardado = localStorage.getItem(this.STORAGE_KEY_CLIENT);
     if (clienteGuardado) {
       this.idcliente = JSON.parse(clienteGuardado);
+    }
+    for (let item of this.carrito) {
+      item.servicio.precio = Number(item.servicio.precio);
+      item.cantidad_personas = Number(item.cantidad_personas);
     }
   }
 
@@ -94,23 +94,35 @@ export class CarritoService {
     localStorage.removeItem(this.STORAGE_KEY_CLIENT);
   }
 
-  async registrarReserva(): Promise<void> {
-    const reserva: Reservation = {
-      pago_total: 1000,
-      fecha: "2024-12-12",
-      estado_pago: "Abonado",
-      metodo_de_pago: "Efectivo",
-      idcliente: 2,
-      cantidad_personas: 10,
-      idservicio: 8,
-    }
+  async postReserva(reserva: Reservation): Promise<void> {
     try {
       const response = await axios.post('http://localhost:8000/api/reservas/', reserva);
       console.log(response.data);
-      this.vaciarCarrito();
-      this.clearCliente();
     } catch (error) {
       console.error(error);
-    }  
+    }
+  }
+
+  async registrarReserva(carrito: { servicio: Service, cantidad_personas: number }[], metodo_de_pago_seleccionado: string): Promise<void> {
+    for (let item of carrito) {
+      let reserva = this.crearReserva(item, metodo_de_pago_seleccionado);
+      console.log(reserva);
+      await this.postReserva(reserva);
+    }
+  }
+
+  crearReserva(item: {servicio: Service, cantidad_personas: number}, metodo_de_pago_seleccionado: string): Reservation {
+    item.servicio.precio = Number(item.servicio.precio);
+    item.cantidad_personas = Number(item.cantidad_personas);
+    let reserva: Reservation = {
+      pago_total: item.servicio.precio,
+      fecha: item.servicio.fecha,
+      estado_pago: 'Abonado',
+      metodo_de_pago: metodo_de_pago_seleccionado,
+      idcliente: this.getIdCliente(),
+      cantidad_personas: item.cantidad_personas,
+      idservicio: item.servicio.idservicio,
+    }
+    return reserva
   }
 }

@@ -40,6 +40,7 @@ export class IniciarSesionUsuarioComponent {
         console.log(response.idcliente)
         this.carrito.setIdCliente(response.idcliente);
       })
+      this.router.navigate(['/pago']);
     } catch (error: any) {
       console.log(error)
       if (error?.response?.data?.detail == 'No Cliente matches the given query.') {

@@ -21,6 +21,7 @@ export class BanqueteriaComponent {
   filtro_seleccionado: string = 'Todos';
   seleccion: Service | null = null;
   cantidad_personas: number = 0;
+  fecha_reserva: string = '';
 
   constructor(
     private databaseService: DatabaseService,
@@ -53,10 +54,12 @@ export class BanqueteriaComponent {
   }
 
   addToCart(service: Service) {
+    service.fecha = this.fecha_reserva;
     this.carritoService.agregarAlCarrito(service, this.cantidad_personas);
     alert('Añadido al carrito: ' + service.titulo); // Mostrar alerta
     this.closeModal();
     console.log('Añadido al carrito:', service);
+    this.fecha_reserva = '';
     this.cantidad_personas = 0;
   }
 

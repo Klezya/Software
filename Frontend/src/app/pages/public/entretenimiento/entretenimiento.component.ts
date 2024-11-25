@@ -5,13 +5,14 @@ import { FooterComponent } from '../../../components/footer/footer.component';
 import { DatabaseService } from '../../../service/database.service';
 import { Service } from '../../../interface/interfaces';
 import { CarritoService } from '../../../service/carrito.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-entretenimiento',
   templateUrl: './entretenimiento.component.html',
   styleUrls: ['./entretenimiento.component.scss'],
   standalone: true,
-  imports: [CommonModule, NavbarComponent, FooterComponent],
+  imports: [CommonModule, NavbarComponent, FooterComponent, FormsModule],
 })
 export class EntretenimientoComponent {
   eventos: Service[] = [];
@@ -19,6 +20,7 @@ export class EntretenimientoComponent {
   filtros: string[] = ['Todos','Musica', 'Show'];
   filtro_seleccionado: string = 'Todos';
   seleccion: Service | null = null;
+  fecha_reserva: string = '';
 
   constructor(
     private databaseService: DatabaseService,
@@ -48,9 +50,11 @@ export class EntretenimientoComponent {
   }
 
   addToCart(service: Service) {
+    service.fecha = this.fecha_reserva;
     this.carritoService.agregarAlCarrito(service, 0);
     alert('Añadido al carrito: ' + service.titulo); // Mostrar alerta
     this.closeModal();
+    this.fecha_reserva = '';
     console.log('Añadido al carrito:', service);
   }
 }

@@ -22,7 +22,7 @@ class Cliente(models.Model):
 
 class Reserva(models.Model):
     idreserva = models.AutoField(primary_key=True)
-    pago_total = models.DecimalField(max_digits=8, decimal_places=2)
+    pago_total = models.DecimalField(max_digits=30, decimal_places=2)
     fecha = models.DateField()
     estado_pago = models.CharField(max_length=20)
     metodo_de_pago = models.CharField(max_length=20)
