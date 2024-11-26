@@ -211,6 +211,134 @@ body {
   margin-right: 5px;
 }
 
+
+/* Contenedor general del selector de fecha */
+.date-picker-container {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Etiqueta de fecha */
+.date-label {
+  font-size: 16px;
+  color: #333;
+  font-weight: bold;
+}
+
+/* Contenedor del campo de fecha con el ícono */
+.date-input-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Input de fecha personalizado */
+.custom-date-picker {
+  width: 100%;
+  padding: 10px 40px 10px 15px; /* Espacio para el ícono */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #555;
+  background-color: #fff;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  appearance: none; /* Quita los estilos por defecto del navegador */
+}
+
+.custom-date-picker:hover {
+  border-color: #007bff;
+}
+
+.custom-date-picker:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  outline: none;
+}
+
+/* Ícono del calendario */
+.date-icon {
+  position: absolute;
+  right: 10px; /* Ubicado al final del campo */
+  color: #888;
+  font-size: 18px;
+  pointer-events: none; /* Evita que el ícono sea interactivo */
+}
+
+/* Efectos de hover en el contenedor */
+.date-input-wrapper:hover .date-icon {
+  color: #007bff;
+}
+
+/* Contenedor general del selector de número */
+.number-picker-container {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Etiqueta del campo de número */
+.number-label {
+  font-size: 16px;
+  color: #333;
+  font-weight: bold;
+}
+
+/* Contenedor del campo de número con el ícono */
+.number-input-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  width: 100%; /* Ajusta al 100% del contenedor */
+}
+
+/* Input de número estilizado */
+.custom-number-picker {
+  width: 100%;
+  padding: 10px 40px 10px 15px; /* Espacio para el ícono */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #555;
+  background-color: #fff;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  appearance: none; /* Quita los controles nativos del navegador */
+}
+
+.custom-number-picker:hover {
+  border-color: #007bff;
+}
+
+.custom-number-picker:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  outline: none;
+}
+
+/* Ícono del campo de número */
+.number-icon {
+  position: absolute;
+  right: 10px; /* Ubicado al final del campo */
+  color: #888;
+  font-size: 18px;
+  pointer-events: none; /* Evita que el ícono sea interactivo */
+}
+
+/* Efectos de hover en el contenedor */
+.number-input-wrapper:hover .number-icon {
+  color: #007bff;
+}
+
+/* Estilo del texto del precio adicional */
+.additional-price {
+  font-size: 14px;
+  color: #666;
+  margin-top: 5px;
+}
+
+
 /* Footer styles */
 app-footer {
   background-color: #333;

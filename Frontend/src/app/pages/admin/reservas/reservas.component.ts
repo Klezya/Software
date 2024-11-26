@@ -3,6 +3,7 @@ import { NavbarComponent } from '../../../components/navbar/navbar.component';
 import { CommonModule } from '@angular/common';
 import { FooterComponent } from '../../../components/footer/footer.component';
 import { Client, Reservation, Service } from '../../../interface/interfaces';
+import { Location } from '@angular/common';
 import { DatabaseService } from '../../../service/database.service';
 
 @Component({
@@ -15,9 +16,15 @@ import { DatabaseService } from '../../../service/database.service';
 export class ReservasComponent implements OnInit {
   reservas: {detalle_reserva: Reservation, cliente: Client, servicio: Service}[] = [];
 
+
   constructor(
-    private databaseService: DatabaseService,
+    private databaseService: DatabaseService, 
+    private location: Location
   ) { }
+
+  volver() {
+    this.location.back();  // Esto hace retroceder al usuario a la página anterior
+  }
 
   async ngOnInit(): Promise<void> {
     const reservas = await this.databaseService.getReservas();
@@ -27,6 +34,8 @@ export class ReservasComponent implements OnInit {
       const cliente = await this.databaseService.getClienteId(reserva.idcliente);
       return { detalle_reserva: reserva, servicio, cliente };
     }));
+
+    
 
     console.log(this.reservas);
   }

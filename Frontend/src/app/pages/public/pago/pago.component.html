@@ -29,17 +29,22 @@
             <p>Especialidad: {{ servicio.servicio.especialidad }}</p>
           </div>
         </div>
-        <p><strong>Total: {{ calcularTotal() | currency }}</strong></p>
-        <p><strong>Total a abonar (50%): {{ calcularTotal()/2 | currency }}</strong></p>
-        
-        <!-- Input desplegable para métodos de pago -->
-        <label for="metodoPago">Método de Pago:</label>
-        <select id="metodoPago" [(ngModel)]="metodo_seleccionado">
-          <option *ngFor="let metodo of metodos_de_pago" [value]="metodo">{{ metodo }}</option>
-        </select>
-        
-        <!-- Botón de pago -->
-        <button class="btn-pagar" (click)="pagar()">Confirmar Pago 50%</button>
+        <div class="summary">
+          <h3>Resumen del Pedido</h3>
+          <p class="summary-total"><strong>Total:</strong> {{ calcularTotal() | currency }}</p>
+          <p class="summary-abonar"><strong>Total a Abonar (50%):</strong> {{ calcularTotal() / 2 | currency }}</p>
+          
+          <!-- Selector del método de pago -->
+          <div class="payment-method">
+            <label for="metodoPago" class="payment-label">Método de Pago:</label>
+            <select id="metodoPago" [(ngModel)]="metodo_seleccionado" class="payment-select">
+              <option *ngFor="let metodo of metodos_de_pago" [value]="metodo">{{ metodo }}</option>
+            </select>
+          </div>
+          
+          <!-- Botón de confirmación de pago -->
+          <button class="btn-pagar" (click)="pagar()">Confirmar Pago 50%</button>
+        </div>
       </div>
   
       <!-- Mensaje si el carrito está vacío -->

@@ -55,9 +55,14 @@
           <p>Infraestructura: {{seleccion.infraestructura}}</p>
           <p>Tipo: {{seleccion.especialidad}}</p>
 
-          <label for="fechaReserva">Fecha de Reserva:</label>
-          <input type="date" id="fechaReserva" [(ngModel)]="fecha_reserva">
-
+          <div class="date-picker-container">
+            <label for="fechaReserva" class="date-label">Fecha de Reserva:</label>
+            <div class="date-input-wrapper">
+              <input type="date" id="fechaReserva" [(ngModel)]="fecha_reserva" class="custom-date-picker">
+              <i class="fa fa-calendar-alt date-icon"></i>
+            </div>
+          </div>
+          
           <!-- Pie de la columna derecha -->
           <div class="details-footer">
             <!-- Precio -->

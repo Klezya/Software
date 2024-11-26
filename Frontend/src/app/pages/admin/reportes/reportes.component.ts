@@ -26,6 +26,10 @@ export class ReportesComponent implements OnInit {
     console.log(this.reportes);
   }
 
+  volver() {
+    window.history.back();  // Vuelve a la página anterior
+  }
+
   generarReportesMensuales(reservas: Reservation[], servicios: Service[]): Reporte[] {
     const reportes: Reporte[] = [];
     const reservasPorMes: { [key: string]: Reservation[] } = {};

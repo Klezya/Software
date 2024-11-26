@@ -1,5 +1,7 @@
 <app-navbar></app-navbar>
 <div class="dashboard-container">
+  <button class="btn-volver" (click)="volver()">Volver</button> <!-- Botón de volver -->
+
   <h2 class="dashboard-title">Reservas</h2>
   <div *ngIf="reservas.length > 0">
     <div *ngFor="let reserva of reservas" class="carrito-item">

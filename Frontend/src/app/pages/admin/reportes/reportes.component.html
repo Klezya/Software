@@ -1,6 +1,14 @@
 <app-navbar></app-navbar>
+
+<!-- Botón Volver -->
+
+
 <div class="dashboard-container">
+  <div class="volver-container">
+    <button class="btn-volver" (click)="volver()">Volver</button>
+  </div>
   <h2 class="dashboard-title">Reportes Mensuales</h2>
+
   <div *ngIf="reportes.length > 0; else noReportes">
     <div *ngFor="let reporte of reportes" class="reporte-item">
       <h3>Reporte del {{ reporte.mes_ano }}</h3>
@@ -9,6 +17,7 @@
       <p>Cantidad de Banquetes: {{ reporte.cantidad_banquetes }}</p>
       <p>Cantidad de Eventos: {{ reporte.cantidad_eventos }}</p>
       <p>Cantidad de Reservas: {{ reporte.cantidad_reservas }}</p>
+
       <h4 (click)="toggleServicios(reporte.mes_ano)" style="cursor: pointer;">
         Servicios <span *ngIf="!mostrarServicios[reporte.mes_ano]">▼</span><span *ngIf="mostrarServicios[reporte.mes_ano]">▲</span>
       </h4>
@@ -20,8 +29,10 @@
       <button class="btn-download" (click)="descargarReporte(reporte)">Descargar Reporte</button>
     </div>
   </div>
+
   <ng-template #noReportes>
     <p>No hay reportes disponibles.</p>
   </ng-template>
 </div>
+
 <app-footer></app-footer>

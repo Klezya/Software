@@ -1,11 +1,35 @@
 <app-navbar></app-navbar>
+
 <div class="dashboard-container">
-   <div>
-    <button class="btn-download" (click)="goToReportes()" >Reportes</button>
-   </div>
-   <br><br>
-   <div>
-    <button class="btn-download"  (click)="goToReservas()" >Reservas</button>
-   </div>
+  <!-- Título del Dashboard -->
+  <h1 class="dashboard-title">Panel de Control</h1>
+
+  <!-- Sección de Acciones -->
+  <div class="action-cards">
+    <!-- Botón para Reportes -->
+    <div class="card" (click)="goToReportes()">
+      <div class="card-image">
+        <img src="https://img.freepik.com/vector-gratis/ilustracion-concepto-datos-financieros_114360-3167.jpg?uid=R135651730&semt=ais_hybrid" alt="Reportes">
+      </div>
+      <div class="card-content">
+        <h3>Reportes</h3>
+        <p>Genera y visualiza reportes detallados para analizar el rendimiento de tu negocio.</p>
+        <button class="btn-action">Ir a Reportes</button>
+      </div>
+    </div>
+
+    <!-- Botón para Reservas -->
+    <div class="card" (click)="goToReservas()">
+      <div class="card-image">
+        <img src="https://img.freepik.com/vector-gratis/ilustracion-concepto-analisis-facturas_114360-19348.jpg?uid=R135651730&semt=ais_hybrid" alt="Reservas">
+      </div>
+      <div class="card-content">
+        <h3>Reservas</h3>
+        <p>Administra todas las reservas realizadas por los clientes y verifica su estado.</p>
+        <button class="btn-action">Ir a Reservas</button>
+      </div>
+    </div>
+  </div>
 </div>
+
 <app-footer></app-footer>
