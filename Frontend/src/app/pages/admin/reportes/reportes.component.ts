@@ -21,9 +21,12 @@ export class ReportesComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     const reservas = await this.databaseService.getReservas();
+    for (let reserva of reservas) {
+      reserva.pago_total = Number(reserva.pago_total)
+    }
     const servicios = await Promise.all(reservas.map(reserva => this.databaseService.getServicio(reserva.idservicio)));
-    this.reportes = this.generarReportesMensuales(reservas, servicios);
     console.log(this.reportes);
+    this.reportes = this.generarReportesMensuales(reservas, servicios);
   }
 
   volver() {

@@ -12,7 +12,7 @@
   <div *ngIf="reportes.length > 0; else noReportes">
     <div *ngFor="let reporte of reportes" class="reporte-item">
       <h3>Reporte del {{ reporte.mes_ano }}</h3>
-      <p>Total Recaudado: {{ reporte.total_recaudado | currency }}</p>
+      <p>Total Recaudado: {{ reporte.total_recaudado | currency}}</p>
       <p>Cantidad de Salones: {{ reporte.cantidad_salones }}</p>
       <p>Cantidad de Banquetes: {{ reporte.cantidad_banquetes }}</p>
       <p>Cantidad de Eventos: {{ reporte.cantidad_eventos }}</p>
