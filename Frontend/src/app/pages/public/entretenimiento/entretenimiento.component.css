@@ -271,6 +271,10 @@ body {
   color: #007bff;
 }
 
+.error {
+  color: red;
+  font-size: 12px;
+}
 
   /* Footer styles */
   app-footer {
@@ -296,4 +300,3 @@ body {
     margin: 0;
     padding: 0;
   }
-  

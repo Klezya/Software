@@ -12,13 +12,19 @@
       <!-- Columna derecha: Formulario -->
       <div class="form-content">
         <h2>Búsqueda de Reservas por RUT</h2>
-        <form (ngSubmit)="onSubmit()">
+        <form [formGroup]="rutForm" (ngSubmit)="onSubmit()">
           <label for="rut">RUT:</label>
-          <input type="text" id="rut" [(ngModel)]="rut" name="rut" required>
-          <button type="submit" [disabled]="isLoading" [class.loading]="isLoading">
+          <input type="text" id="rut" formControlName="rut" required>
+          <div *ngIf="rutForm.get('rut')?.invalid && rutForm.get('rut')?.touched">
+            <small class="error" *ngIf="rutForm.get('rut')?.errors?.['required']">El RUT es requerido</small>
+            <br>
+            <small class="error" *ngIf="rutForm.get('rut')?.errors?.['invalidRut']">El RUT no es válido</small>
+          </div>
+          <button type="submit" [disabled]="isLoading || rutForm.invalid" [class.loading]="isLoading">
             <span *ngIf="!isLoading">Buscar</span>
             <span *ngIf="isLoading">Buscando...</span>
           </button>
+          <small class="error" *ngIf="!finded">No se encontraron reservas asociadas a este RUT</small>
         </form>
       </div>
     </div>
@@ -43,3 +49,7 @@
         </li>
       </ul>
     </div>
+  </div>
+
+  <app-footer></app-footer>
+</div>

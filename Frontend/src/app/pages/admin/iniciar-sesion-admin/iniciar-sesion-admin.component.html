@@ -1,22 +1,28 @@
 <div class="contenedor-principal">
-    <app-navbar></app-navbar>
-  
-    <div class="form-container">
-  
-      <!-- Columna derecha: Formulario -->
-      <div class="form-content">
-        <h2>Inicio Personal</h2>
-        <form (ngSubmit)="onSubmit()">
-          <label for="nombre">Usuario: </label>
-          <input type="text" id="nombre" [(ngModel)]="personal.usuario" name="nombre" required>
-  
-          <label for="apellido">Contraseña: </label>
-          <input type="password" id="apellido" [(ngModel)]="personal.password" name="apellido" required>
-  
-          <button type="submit">Acceder</button>
-        </form>
-      </div>
+  <app-navbar></app-navbar>
+
+  <div class="form-container">
+    <!-- Columna derecha: Formulario -->
+    <div class="form-content">
+      <h2>Inicio Personal</h2>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <label for="usuario">Usuario: </label>
+        <input type="text" id="usuario" formControlName="usuario" required>
+        <div *ngIf="loginForm.get('usuario')?.invalid && loginForm.get('usuario')?.touched">
+          <small class="error">El usuario es requerido</small>
+        </div>
+
+        <label for="password">Contraseña: </label>
+        <input type="password" id="password" formControlName="password" required>
+        <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+          <small class="error">La contraseña es requerida</small>
+        </div>
+
+        <button type="submit" [disabled]="loginForm.invalid">Acceder</button>
+        <small class="error" *ngIf="invalid">Contraseña y/o usuario incorrecto</small>
+      </form>
     </div>
-  
-    <app-footer></app-footer>
   </div>
+
+  <app-footer></app-footer>
+</div>

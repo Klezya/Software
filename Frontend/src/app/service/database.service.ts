@@ -117,14 +117,17 @@ export class DatabaseService {
     }
   }
 
-  async loginPersonal(credenciales: {usuario: string, password: string}): Promise<any> {
+  async loginPersonal(credenciales: {usuario: string, password: string}): Promise<boolean> {
     try {
       const response = await axios.get(`${this.BASE_URL}/api/personal/`);
-      response.data.forEach((personal: Personal) => {
+      for (const personal of response.data) {
         if (personal.usuario === credenciales.usuario && personal.password === credenciales.password) {
-          console.log('Usuario encontrado:',personal);
+          console.log('Usuario encontrado:', personal);
+          return true;
         }
-      });
+      }
+      return false;
+      
     } catch (error) {
       console.error('Error fetching data', error);
       throw error;

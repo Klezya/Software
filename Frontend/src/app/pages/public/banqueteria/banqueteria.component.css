@@ -331,6 +331,11 @@ body {
   color: #007bff;
 }
 
+.error {
+  color: red;
+  font-size: 12px;
+}
+
 /* Estilo del texto del precio adicional */
 .additional-price {
   font-size: 14px;

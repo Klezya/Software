@@ -194,3 +194,8 @@ li.card:hover {
     align-items: center;
   }
 }
+
+.error {
+  color: red;
+  font-size: 12px;
+}

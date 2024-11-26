@@ -1,32 +1,38 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule, FormGroup, FormBuilder, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { NavbarComponent } from '../../../components/navbar/navbar.component';
 import { FooterComponent } from '../../../components/footer/footer.component';
 import { DatabaseService } from '../../../service/database.service';
 import { Service } from '../../../interface/interfaces';
 import { CarritoService } from '../../../service/carrito.service';
+import { CustomValidators } from '../../../validators/validators';
 
 @Component({
   selector: 'app-banqueteria',
   templateUrl: './banqueteria.component.html',
   styleUrls: ['./banqueteria.component.scss'],
   standalone: true,
-  imports: [CommonModule, NavbarComponent, FooterComponent, FormsModule],
+  imports: [CommonModule, NavbarComponent, FooterComponent, FormsModule, ReactiveFormsModule],
 })
-export class BanqueteriaComponent {
+export class BanqueteriaComponent implements OnInit {
   banquetes: Service[] = [];
   banquetes_filtrados: Service[] = [];
-  filtros: string[] = ['Todos','Buffet','Gourmet', 'Vegano'];
+  filtros: string[] = ['Todos', 'Buffet', 'Gourmet', 'Vegano'];
   filtro_seleccionado: string = 'Todos';
   seleccion: Service | null = null;
   cantidad_personas: number = 0;
-  fecha_reserva: string = '';
+  reservaForm: FormGroup;
 
   constructor(
     private databaseService: DatabaseService,
-    private carritoService: CarritoService
-  ) { }
+    private carritoService: CarritoService,
+    private fb: FormBuilder
+  ) {
+    this.reservaForm = this.fb.group({
+      fecha_reserva: ['', [Validators.required, CustomValidators.fechaValidator]]
+    });
+  }
 
   async ngOnInit() {
     this.banquetes = await this.databaseService.getBanquetes();
@@ -54,16 +60,21 @@ export class BanqueteriaComponent {
   }
 
   addToCart(service: Service) {
-    service.fecha = this.fecha_reserva;
+    if (this.reservaForm.invalid) {
+      return;
+    }
+    service.fecha = this.reservaForm.value.fecha_reserva;
     this.carritoService.agregarAlCarrito(service, this.cantidad_personas);
     alert('Añadido al carrito: ' + service.titulo); // Mostrar alerta
     this.closeModal();
+    this.reservaForm.reset();
     console.log('Añadido al carrito:', service);
-    this.fecha_reserva = '';
-    this.cantidad_personas = 0;
   }
 
   asegurarValorAbsoluto() {
-    this.cantidad_personas = Math.abs(this.cantidad_personas);
+    if (this.cantidad_personas < 0) {
+      this.cantidad_personas = Math.abs(this.cantidad_personas);
+    }
   }
+
 }

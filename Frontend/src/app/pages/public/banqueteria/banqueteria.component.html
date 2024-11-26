@@ -74,12 +74,17 @@
             <p class="additional-price">Precio por plato adicional: ${{ seleccion.precio * 0.005 }}</p>
           </div>
           
-
           <div class="date-picker-container">
             <label for="fechaReserva" class="date-label">Fecha de Reserva:</label>
             <div class="date-input-wrapper">
-              <input type="date" id="fechaReserva" [(ngModel)]="fecha_reserva" class="custom-date-picker">
-              <i class="fa fa-calendar-alt date-icon"></i>
+              <form [formGroup]="reservaForm" (ngSubmit)="addToCart(seleccion)">
+                <input type="date" id="fechaReserva" formControlName="fecha_reserva" class="custom-date-picker">
+                <div *ngIf="reservaForm.get('fecha_reserva')?.invalid">
+                  <small class="error" *ngIf="reservaForm.get('fecha_reserva')?.errors?.['required']">La fecha es requerida</small>
+                  <small class="error" *ngIf="reservaForm.get('fecha_reserva')?.errors?.['invalidDate']">La fecha no puede ser anterior a hoy</small>
+                </div>
+                <i class="fa fa-calendar-alt date-icon"></i>
+              </form>
             </div>
           </div>
 

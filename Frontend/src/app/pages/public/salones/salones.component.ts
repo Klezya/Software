@@ -5,14 +5,15 @@ import { FooterComponent } from '../../../components/footer/footer.component';
 import { Service } from '../../../interface/interfaces';
 import { DatabaseService } from '../../../service/database.service';
 import { CarritoService } from '../../../service/carrito.service';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule, FormGroup, FormBuilder, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
+import { CustomValidators } from '../../../validators/validators';
 
 @Component({
   selector: 'app-salones',
   templateUrl: './salones.component.html',
   styleUrls: ['./salones.component.scss'],
   standalone: true,
-  imports: [CommonModule, NavbarComponent, FooterComponent, FormsModule],
+  imports: [CommonModule, NavbarComponent, FooterComponent, FormsModule, ReactiveFormsModule],
 })
 export class SalonesComponent implements OnInit {
   salones: Service[] = [];
@@ -20,12 +21,17 @@ export class SalonesComponent implements OnInit {
   filtros: string[] = ['Todos', 'Grande', 'Mediano', 'Mediano Junior'];
   filtro_seleccionado: string = 'Todos';
   seleccion: Service | null = null;
-  fecha_reserva: string = '';
+  reservaForm: FormGroup;
 
   constructor(
     private databaseService: DatabaseService,
-    private carritoService: CarritoService
-  ) { }
+    private carritoService: CarritoService,
+    private fb: FormBuilder
+  ) {
+    this.reservaForm = this.fb.group({
+      fecha_reserva: ['', [Validators.required, CustomValidators.fechaValidator]]
+    });
+  }
 
   async ngOnInit() {
     this.salones = await this.databaseService.getSalones();
@@ -51,13 +57,18 @@ export class SalonesComponent implements OnInit {
   }
 
   addToCart(service: Service) {
-    service.fecha = this.fecha_reserva;
+    if (this.reservaForm.invalid) {
+      return;
+    }
+    service.fecha = this.reservaForm.value.fecha_reserva;
     this.carritoService.agregarAlCarrito(service, 0);
     alert('Añadido al carrito: ' + service.titulo); // Mostrar alerta
     this.closeModal();
-    this.fecha_reserva = '';
+    this.reservaForm.reset();
     console.log('Añadido al carrito:', service);
   }
+
+  
 }
 
 
